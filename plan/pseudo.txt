@@ -1,0 +1,36 @@
+get player location
+
+compare player location to all known entities
+
+get nearest entity
+
+show entities closer than threshold on UI
+
+
+
+if nearest entity distance from player > threshold && random(0, 100000) == 1
+
+	create random entity at player location :
+
+
+
+choose random entity from non-encountered entity list
+
+assign coordinates to entity
+
+add entity to encountered entity list
+
+generate narrative sequence
+
+	var possible = check possible conflicts (if decisions[1] == true, then allow random generation to N)
+
+	get random intro from intro list + entity(name) + conflicts[possible] + conflict choices
+
+	>player makes choice
+
+	either 1. save choice and simply exit out of narrative sequence, or
+	2. present reservedConflicts[X] scenario and continue chain
+
+
+
+when over, start again
