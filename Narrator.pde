@@ -1,7 +1,4 @@
 class Narrator {
-  //array of attributes to describe entities
-  String[] attributes;
-
   //narrative sequence introductions
   String[] intros;
 

@@ -23,7 +23,7 @@ int count = 1;
 //checker to avoid unwanted double-clicking
 boolean ready = true;
 
-//general use timer
+//general use timer (mostly for animations)
 Timer timer = new Timer();
 
 void setup() {
