@@ -14,23 +14,31 @@ Mapper mapper;
 //narrative generator and manager
 Narrator narrator;
 
+//narrative database
+JSONObject data;
+
 //interface
 Interface UI = new Interface();
 PFont console;
 
-int count = 1;
-
 //checker to avoid unwanted double-clicking
 boolean ready = true;
+
+
+//DEBUG
+int count = 1;
 
 //general use timer (mostly for animations)
 Timer timer = new Timer();
 
 void setup() {
   fullScreen();
+  background(0);
+  
   console = createFont("Menlo-Regular.ttf", 24, false);
   textFont(console);
-  background(0);
+  
+  data = loadJSONObject("Narrative.json");
 }
 
 void draw() {
