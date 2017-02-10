@@ -64,9 +64,7 @@ Visually, some of the entities and narrative sequences would have visuals attatc
 
 ###Scope - Plan
 
-Now, I realize that a non-linear, procedurally generated branching narrative with filtered google search images that uses geolocation for world navigation is not easy to make. In fact, I don't think I can do all of this within the given timeframe. The project above describes an 'ideal' version of this project. This 'ideal', of course, is likely to change over the course of the project, as it's likely that some parts do not require as much complexity as I initially intended to implement.
-
-With that being said, here's a breakdown of the tasks to be completed for the production of this project, in (more or less) chronological order:
+A breakdown of the tasks to be completed for the production of this project, in (more or less) chronological order:
 
 - ~~Get acquainted with Processing for Android. Create a few sketches, make sure they run, and test location services and accelorometer.~~
 
@@ -76,14 +74,11 @@ With that being said, here's a breakdown of the tasks to be completed for the pr
 
 - ~~Create a simple interface engine for the application. This is when the application starts to be put together.~~
 
-- Create a preliminary selection of characters and objects to interact with. These are actually quite simple, as both objects and characters have relatively similar functionality: present a narrative, give the player a choice. The main difference between the two is how characters would potentially have 'standing' with the player that would evolve over time and affect how the player interacts with them, whereas objects would not.
+- ~~Create a preliminary selection of characters and objects to interact with. These are actually quite simple, as both objects and characters have relatively similar functionality: present a narrative, give the player a choice. The main difference between the two is how characters would potentially have 'standing' with the player that would evolve over time and affect how the player interacts with them, whereas objects would not.~~
 
-- Create a few static stories that go along with the preliminary entities. This would replace a narrative constructor algorithm. This system would need to divide a 'sequence' into a few key parts, each of which would have a selection of attributes that describe what other pieces it can be fitted with. Additionally, it would need to make sure not to repeat phrases (like, ever), as that'd be very immersion breaking and would give away the procedural generation to the player.
+- ~~Create a few static stories that go along with the preliminary entities. This would replace a narrative constructor algorithm. This system would need to divide a 'sequence' into a few key parts, each of which would have a selection of attributes that describe what other pieces it can be fitted with. Additionally, it would need to make sure not to repeat phrases (like, ever), as that'd be very immersion breaking and would give away the procedural generation to the player.~~
 
-- Implement story bits and interactive entities as content in interface engine.
-
-
-At this point, we have the minimum viable product. A game where you shake your phone enough times to get some text with a cool image and make some choices in it, with *some* effect on the rest of the game world. It's not incredibly exciting, but it has the potential to convey the idea quite accurately. I think that, in all likelyhood, it won't take much time to get to this point, giving me a lot of time to work on the more advanced versions of the features. Here is the continuation of the project plan:
+- ~~Implement story bits and interactive entities as content in interface engine.~~
 
 - Create narrative construction system, and implement it into the game. This system would handle constructing sequences out of small textual bits, as well as managing the consequences of player choices, i.e. keeping a set of values that represent the key choices the player has made, and the player's relationship to other entities. I choose to focus on this immediately after finishing the minimum viable product, because it is the heart of the game experience. Pretty interfaces and fancy animations are not central to the idea, and so they're left for later.
 
@@ -94,6 +89,3 @@ At this point, we have the minimum viable product. A game where you shake your p
 - Create save functionality (finally). This would take the player data stored in the narrative system, as well as all of the entities in whichever area they last were. How, exactly? I don't know.
 
 - Make everything prettier, add visual polish, add sound effects, add music(?), add cool startup animation, make more narrative content, refine narrative system. This is the final stage.
-
-
-In all honesty, I doubt that I will be able to reach the final stage by the project deadline. I think it's most likely that I create the minimum viable product, then spend a bunch of time on the narrative system, and have a bit of time to maybe get the Google Maps thing to work. I say this because I'm certain that I've overlooked at least a few things, and many unforseen challenges will come up. Though I do believe that I will, at the very least, create something that acts as a prototype and showcases the ideas I'd like to express.
