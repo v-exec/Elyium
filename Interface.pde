@@ -3,24 +3,24 @@ class Interface {
   PImage source;
   int brightnessThresh = 50;
 
+  //characters for ASCII art
+  String[] chars = {".", "'", "-", "+", ";", "=", "x", "*", "#"};
+
   //boolean to stop cover image from being re-rendered
   boolean rendered = false;
-
-  //possible characters for ASCII art
-  String[] chars = {".", "'", "-", "+", ";", "=", "x", "*", "#"};
 
   Interface() {
   }
 
   //displays UI, animates UI depending on entity cover (if cover is too bright and renders too much text, animation is set to off to avoid lag)
-  public void display(PImage img, boolean animate, int state) {
+  public void display(int state) {
     switch (state) {
     case 1:
       inter();
       break;
 
     case 2:
-      narrative(img, animate);
+      narrative(narrator.monument);
       break;
 
     case 3:
@@ -40,14 +40,20 @@ class Interface {
   private void inter() {
   }
 
-  private void narrative(PImage img, boolean animate) {
+  private void narrative(Entity object) {
+    //get narrative
+
+
+    //display narrative
+
+
     //display ascii image
-    source = img;
+    source = object.cover;
 
     if (rendered == false) {
       background(0);
-      ASCII(animate);
-      if (animate == false) rendered = true;
+      ASCII(object.animate);
+      if (object.animate == false) rendered = true;
     }
   }
 

@@ -14,9 +14,9 @@ class Entity {
   boolean[] decisions;
 
   //initializes entity, and assigns it a number of key decisions to keep track of
-  Entity(String name, PImage cover, boolean animate, int decisionNum) {
+  Entity(String name, String img, boolean animate, int decisionNum) {
     this.name = name;
-    this.cover = cover;
+    this.cover = loadImage(img);
     this.animate = animate;
     decisions = new boolean[decisionNum];
   }
