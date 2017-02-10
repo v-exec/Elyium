@@ -17,6 +17,9 @@ class Narrator {
     //monument
     directory = data.getJSONObject("monument");
     monument = new Entity(directory.getString("name"), directory.getString("cover"), directory.getBoolean("animate"), directory.getInt("keys"));
+    entities[0] = monument;
+    
+    //other
   }
 
   public String constructNarrative(Entity object) {

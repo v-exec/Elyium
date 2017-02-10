@@ -24,6 +24,9 @@ PFont console;
 //checker to avoid unwanted double-clicking
 boolean ready = true;
 
+//UI state / toggles
+boolean menuToggle = false;
+
 //general use timer (mostly for animations)
 Timer timer = new Timer();
 
@@ -40,15 +43,27 @@ void setup() {
 }
 
 void draw() {
-  UI.display(2);
+  if (menuToggle) {
+    UI.display(3);
+  } else {
+    UI.display(2);
+  }
 
-  //if (mousePressed) {
-  //  if (ready) {
-  //    UI.setRendered(false);
-  //  } else {
-  //    UI.setRendered(false);
-  //  }
-  //  ready = false;
-  //}
-  //if (mousePressed == false) ready = true;
+  //controls
+  if (mousePressed) {
+    if (ready) {
+
+      //menu toggle
+      if (mouseX <= width && mouseX > width-150 && mouseY <= height && mouseY > height-150) menuToggle = !menuToggle;
+     
+
+
+
+
+
+      ready = false;
+    }
+  }
+  //reset mouse press to avoid unwanted double-clicks
+  if (mousePressed == false) ready = true;
 }
