@@ -55,11 +55,6 @@ void draw() {
 
       //menu toggle
       if (mouseX <= width && mouseX > width-150 && mouseY <= height && mouseY > height-150) menuToggle = !menuToggle;
-     
-
-
-
-
 
       ready = false;
     }

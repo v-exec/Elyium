@@ -1,8 +1,8 @@
 public void onResume() {
   super.onResume();
   
-  ////re-render visuals
-  //UI.setRendered(false);
+  //re-render visuals
+  if (UI != null) UI.setRendered(false);
 }
 
 public void onPause() {
