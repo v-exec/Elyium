@@ -44,15 +44,13 @@ _WatchDogs 2_'s creative direction is undeniably unique. Ever since the first ga
 
 ###How it works
 
-When the user logs in for the first time, their location is tracked. Using the google maps API, the system finds notable landmarks and creates points of interest that get triggered when the user is sufficiently close to them.
+When the user logs in for the first time, their location is tracked. As the user roams around, entities are procedurally spawned in their surroundings.
 
-The entities at these locations function in the same way every time. When they are triggered, they give the user a narrative sequence (a block of text, basically), potentially with an ASCII visual attatched. Then, the player must decide on how to interact with a few options to choose from. Their choices affect how the entity they're interacting with reacts, how the story sequence plays out, and how future sequences will be generated, play out, and what entities the player will come accross, and in what states.
+The entities at these locations function in the same way every time. When they are triggered, they give the user a narrative sequence (a block of text, basically), with an ASCII visual attatched, and usually a few choices the player can make. The player must decide on how to interact with the few options given to them. Their choices affect how the entity they're interacting with reacts, how the story sequence plays out, and what future sequences will be generated. In larger scale 'quests', these decisions will also affect how other entities' narratives play out, what entities the player will come accross, and in what states.
 
-Each narrative sequence is constructed using a variety of modular bits of text. Depending on some key elements of the constructed text, a selection of appropriate player choices will be queried and picked at random whilst avoiding presenting players with a repetitive set of decisions.
+As the player discovers more key entities and interacts with them, other key entities will be alerted to important decisions that the player has taken. These decisions will add new narrative modules to be included in the sequence generation, advancing the story.
 
-As the player discovers more key entities and interacts with them, all other entities will be alerted to important decisions that the player has taken. The decisions will add new text modules to be included in the sequence generation, advancing the story.
-
-Visually, some of the entities and narrative sequences would have visuals attatched to them. Since this is a text-only game in a terminal-like environment, I'm limited to ASCII. All content would be procedurally generated (to a degree), and that would include the visual art, as well. Whenever an image is needed, a quick google search would be conducted looking for a few key words. Once an appropriate image is found, it is processed through a filter that determines a pixel region's brightness, and replaces it with an ASCII character that represents said brightness (for instance, '@' would be much 'brighter' than '.', as it takes up more space).
+Visually, all entities have visuals attatched to them. Since this is a text-only experience in a terminal-like environment, visuals are limited to ASCII. All visuals are parsed through an ASCII filter which translates regular images into ASCII characters.
 
 ###Scope - Plan
 
@@ -62,10 +60,10 @@ A breakdown of the remaining tasks to be completed for the production of this pr
 
 - Create map grid + algorithm to determine when to allocate entity location, and tie that to the narration generation.
 
-- Add entity locations in menu screen.
+- Add entity locations in menu screen + interaction options for when the user is near them.
 
 - Create save functionality. After every narrative sequence, this takes the player and entity stored in the narrative system, as well as all of the entities' last known location.
 
 - Add startup and transition animations.
 
-- Make more narrative content, refine narrative system, create main and side 'quests'.
+- Make more narrative content and images, refine narrative system, create main and side 'quests'.
