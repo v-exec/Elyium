@@ -7,7 +7,7 @@ class Narrator {
 
   //variables used for JSON navigation and info retrieval
   JSONObject directory;
-  String conflict;
+  String text;
   String[] choices;
 
   //all entities
@@ -18,13 +18,21 @@ class Narrator {
     directory = data.getJSONObject("monument");
     monument = new Entity(directory.getString("name"), directory.getString("cover"), directory.getBoolean("animate"), directory.getInt("keys"));
     entities[0] = monument;
-    
+
     //other
   }
 
   public String constructNarrative(Entity object) {
     directory = data.getJSONObject(object.name);
+    text = directory.getString("context");
     directory = directory.getJSONObject("conflicts");
-    return directory.getString("C1");
+    return text + "\n" + "\n" + directory.getString("C1");
+  }
+
+  public String getChoices(Entity object) {
+    directory = data.getJSONObject(object.name);
+    directory = directory.getJSONObject("choices");
+    text = directory.getString("C1-1");
+    return text;
   }
 }

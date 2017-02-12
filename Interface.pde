@@ -9,11 +9,14 @@ class Interface {
   //boolean to stop cover image from being re-rendered
   boolean rendered = false;
 
-  //menu button UI
+  //UI elements
   boolean inMenu = false;
   PImage menuIcon;
+  PImage choiceIcon = loadImage("choice.png");
 
   Interface() {
+    fill(255);
+    noStroke();
   }
 
   //displays UI, animates UI depending on entity cover (if cover is too bright and renders too much text, animation is set to off to avoid lag)
@@ -51,20 +54,22 @@ class Interface {
   private void narrative(Entity object) {
     inMenu = false;
 
-    //get narrative
-
-
-    //display narrative
-
-
-    //display ascii image
+    //get ascii image
     source = object.cover;
 
+    //refresh frames if ascii image is animated
     if (rendered == false) {
       background(0);
       ASCII(object.animate);
       if (object.animate == false) rendered = true;
     }
+
+    //get and display narrative
+    displayNarrative(object);
+
+    //get and display choices
+    displayChoice(0, narrator.getChoices(object));
+    displayChoice(1, "Pull the extrusion.");
   }
 
   private void menu() {
@@ -77,8 +82,7 @@ class Interface {
     source.loadPixels();
 
     textAlign(CENTER);
-    fill(255);
-    noStroke();
+
     textSize(12);
 
     for (int x = 0; x < source.width; x += 10) {
@@ -97,10 +101,44 @@ class Interface {
     }
   }
 
+
+  private void displayNarrative(Entity object) {
+    rectMode(CORNER);
+    textAlign(LEFT);
+    fill(255);
+    textSize(24);
+
+    text(narrator.constructNarrative(object), width/10, height/3, width - (width/10 * 2), height - height/4);
+  }
+
+  private void displayChoice(int num, String string) {
+    textAlign(CENTER);
+    fill(255);
+    textSize(12);
+
+    choiceIcon.loadPixels();
+
+    for (int x = 0; x <= choiceIcon.width; x += 10) {
+      for (int y = 0; y <= choiceIcon.height; y += 10) {
+        int loc = constrain(x + (y * choiceIcon.width), 0, choiceIcon.pixels.length-1);
+
+        int brightness = int(brightness(choiceIcon.pixels[loc]));
+        if (int(random(0, 1000)) > 1) {
+          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width/10, y + (height/3 * 2) + (num * 100));
+        }
+      }
+    }
+    rectMode(CORNER);
+    textAlign(LEFT);
+    fill(255);
+    textSize(24);
+
+    text(string, width/8, (height/3 * 2) + (num * 100), width - (width/10 * 2), 50);
+  }
+
   private void displayMenu() {
     textAlign(CENTER);
     fill(255);
-    noStroke();
     textSize(12);
 
     if (inMenu) menuIcon = loadImage("menuOn.png");
@@ -123,7 +161,7 @@ class Interface {
     background(0);
     fill(255);
     textAlign(CENTER);
-    textSize(35);
+    textSize(24);
 
     //coordinates
     if (mapper.getHasLocation()) {

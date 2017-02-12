@@ -58,14 +58,14 @@ Visually, some of the entities and narrative sequences would have visuals attatc
 
 A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order:
 
-- Finish developing, organizing, and implementing narrative construction system. This system handles the picking of narrative sequences, as well as managing the consequences of player choices.
+- Finish developing, organizing, and implementing narrative construction system + choice button functionality. This system handles the picking of narrative sequences, as well as managing the consequences of player choices.
 
 - Create map grid + algorithm to determine when to allocate entity location, and tie that to the narration generation.
 
-- Add entity locations in menu.
+- Add entity locations in menu screen.
 
 - Create save functionality. After every narrative sequence, this takes the player and entity stored in the narrative system, as well as all of the entities' last known location.
 
-- Add visual polish, startup and transition animations.
+- Add startup and transition animations.
 
 - Make more narrative content, refine narrative system, create main and side 'quests'.
