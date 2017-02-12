@@ -2,11 +2,11 @@
 
 ###What it is
 
-_Elyium_ is a mobile game with a text-only interface that motivates users to investigate an alternative 'fantasy science' universe synchronized with our own.
+_Elyium_ is a *work in progress* mobile game with a text-only interface that motivates users to investigate an alternative 'fantasy science' universe synchronized with our own.
 
 The user is granted access to the world of _Elyium_ through their phone, a world parallel to our own. Through physical mobilization, users are met with objects, people, or entities. Each of these encounters presents a narrative sequence in which the player has a variety of choices to make.
 
-Visually, the game is exclusively text based, inspired by the aesthetic of a computer terminal, with the regular use of ASCII art.
+Visually, the game is exclusively text based, inspired by the aesthetic of a computer terminal, with regular use of ASCII art.
 
 ###Resources & Inspiration
 
@@ -52,7 +52,7 @@ As the player discovers more key entities and interacts with them, other key ent
 
 Visually, all entities have visuals attatched to them. Since this is a text-only experience in a terminal-like environment, visuals are limited to ASCII. All visuals are parsed through an ASCII filter which translates regular images into ASCII characters.
 
-###Scope - Plan
+###Plan
 
 A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order:
 
