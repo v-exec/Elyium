@@ -3,39 +3,62 @@
 		"name": "monument",
 		"cover": "1.png",
 		"animate": true,
-		"keys": 0,
 
 		"context": "Before you stands an odd megastructure approximately 40 meters in height, and 5x5 meters in width and length. It's shaped like a thin pyramid, with various degraded inscriptions along each of its corners, and appears to be a religious monument of some sort due to its complex ornamentation.",
 
 		"conflicts":{
-			"C1": "You notice a small, rough potrusion on the side of the otherwise unnaturally smooth surface of the monument. Small specs of dust fall out of its cracks, hinting at its recent apparition.",
-			"C2": "Lines driving up the monument's smooth walls light up a cyan blue and illuminate the dust floating in the atmosphere. The lights lead to an open door on the side of the megastructure."
-		},
+			"K1":{
+				"def": "You notice a small, rough potrusion on the side of the otherwise unnaturally smooth surface of the monument. Small specs of dust fall out of its cracks, hinting at its recent apparition.",
+				"C1":{
+					"def": "Push the extruded wall.",
+					"K1-1":{
+						"def": "The monument trembles in front of you. Pieces from its top plummet to the ground.",
+						"C1-1":{
+							"def": "Run.",
+							"res": "The structure collapses, you escape without getting hurt."
+						},
+						"C1-2":{
+							"def": "Try to dodge the debris, but stay at the monument.",
+							"res": "A piece of the monument falls on you, your ankle is badly injured, but you are otherwise fine. The monument is destroyed."
+						}
+					}
+				},
+				"C2":{
+					"def": "Pull the extrusion.",
+					"K1-2":{
+						"def": "The extrusion slides further out and revelas a semi-decomposed alien corpse. Its fingers are curled around some sort of scroll.",
+						"C2-1":{
+							"def": "Grab the scroll.",
+							"res": "You grab the scroll from the creature's hands. It revelas a mythical telling of an epic battle that occured near this site. Most of the writing has unfortunately washed away, but you can make out a few key words that describe the incident as a major event that would bring peace for thousands of years."
+						},
+						"C2-2":{
+							"def": "Push the coffin back into the monument.",
+							"res": "The coffin fits back into the monument. A silent, low-pitched hum spreads through the air. Everything is calm."
+						}
+					}
+				}
+			},
 
-		"choices":{
-			"C1-1": "Push the extruded wall.",
-			"C1-2": "Pull the extrusion.",
-
-			"C2-1": "Enter the passageway.",
-			"C2-2": "Wait to see if anything comes out the door."
-		},
-
-		"reservedConflicts":{
-			"C1-1R": "The monument trembles in front of you. Pieces from its top plummet to the ground.",
-			"C1-2R": "The extrusion slides further out and revelas a semi-decomposed alien corpse. Its fingers are curled around some sort of scroll."
-		},
-
-		"reservedChoices":{
-			"C1-1R1": "Run.",
-			"C1-1R2": "Try to dodge the debris, but stay at the monument."
-		},
-
-		"results":{
-			"C1-1R1S": "The structure collapses, you escape without getting hurt.",
-			"C1-1R2S": "You grab the scroll from the creature's hands. It revelas a mythical telling of an epic battle that occured near this site. Most of the writing has unfortunately washed away, but you can make out a few key words that describe the incident as a major event that would bring peace for thousands of years.",
-
-			"C2-1S": "The door closes right as you attempt to enter it, clipping one of your fingers and breaking a part of it.",
-			"C2-2S": "The door slowly closes, the lights of the structure dim."
+			"K2":{
+				"def": "Lines driving up the monument's smooth walls light up a cyan blue and illuminate the dust floating in the atmosphere. The lights lead to an open door on the side of the megastructure.",
+				"choices":{
+					"C1":{
+						"def": "Enter the passageway.",
+						"res": "The door closes right as you attempt to enter it, clipping one of your fingers and breaking a part of it."
+					},
+					"C2":{
+						"def": "Wait to see if anything comes out the door.",
+						"res": "The door slowly closes, the lights of the structure dim."
+					}
+				}
+			}
 		}
+	},
+
+	"spire":{
+		"name": "spire",
+		"cover": "2.png",
+		"animate": true
 	}
+
 }

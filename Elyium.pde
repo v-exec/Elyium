@@ -26,6 +26,7 @@ boolean ready = true;
 
 //UI state / toggles
 boolean menuToggle = false;
+int mode = 1;
 
 //general use timer (mostly for animations)
 Timer timer = new Timer();
@@ -43,11 +44,10 @@ void setup() {
 }
 
 void draw() {
-  if (menuToggle) {
-    UI.display(3);
-  } else {
-    UI.display(2);
-  }
+  //display
+  if (menuToggle) mode = 3;
+  else mode = 2;
+  UI.display(mode);
 
   //controls
   if (mousePressed) {

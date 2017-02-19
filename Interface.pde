@@ -68,7 +68,7 @@ class Interface {
     displayNarrative(object);
 
     //get and display choices
-    displayChoice(0, narrator.getChoices(object));
+    displayChoice(0, "Push the extruded wall.");
     displayChoice(1, "Pull the extrusion.");
   }
 

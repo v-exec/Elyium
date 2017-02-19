@@ -16,7 +16,7 @@ class Narrator {
   Narrator() {
     //monument
     directory = data.getJSONObject("monument");
-    monument = new Entity(directory.getString("name"), directory.getString("cover"), directory.getBoolean("animate"), directory.getInt("keys"));
+    monument = new Entity(directory.getString("name"), directory.getString("cover"), directory.getBoolean("animate"));
     entities[0] = monument;
 
     //other
@@ -26,13 +26,7 @@ class Narrator {
     directory = data.getJSONObject(object.name);
     text = directory.getString("context");
     directory = directory.getJSONObject("conflicts");
-    return text + "\n" + "\n" + directory.getString("C1");
-  }
-
-  public String getChoices(Entity object) {
-    directory = data.getJSONObject(object.name);
-    directory = directory.getJSONObject("choices");
-    text = directory.getString("C1-1");
-    return text;
+    directory = directory.getJSONObject("K1");
+    return text + "\n" + "\n" + directory.getString("def");
   }
 }

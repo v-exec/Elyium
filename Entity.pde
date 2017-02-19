@@ -10,15 +10,11 @@ class Entity {
   PImage cover;
   boolean animate;
 
-  //list of key decisions taken with this entity, used in narration construction to omit or allow certain choices
-  boolean[] decisions;
-
   //initializes entity, and assigns it a number of key decisions to keep track of
-  Entity(String name, String img, boolean animate, int decisionNum) {
+  Entity(String name, String img, boolean animate) {
     this.name = name;
     this.cover = loadImage(img);
     this.animate = animate;
-    decisions = new boolean[decisionNum];
   }
 
   //assigns location to entity once it's been encountered
