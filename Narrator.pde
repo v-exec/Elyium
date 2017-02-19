@@ -8,15 +8,15 @@ class Narrator {
   //variables used for JSON navigation and info retrieval
   JSONObject directory;
   String text;
-  String[] choices;
 
   //all entities
   Entity monument;
 
+  //on Narrator initialization, all entities are created and filled with their respective data (except for location)
   Narrator() {
     //monument
     directory = data.getJSONObject("monument");
-    monument = new Entity(directory.getString("name"), directory.getString("cover"), directory.getBoolean("animate"));
+    monument = new Entity(directory);
     entities[0] = monument;
 
     //other

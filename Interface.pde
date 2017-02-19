@@ -14,16 +14,20 @@ class Interface {
   PImage menuIcon;
   PImage choiceIcon = loadImage("choice.png");
 
+  //state of UI (1 = idle 2 = narrative 3 = menu)
+  int state;
+  boolean menuToggle;
+
   Interface() {
     fill(255);
     noStroke();
   }
 
   //displays UI, animates UI depending on entity cover (if cover is too bright and renders too much text, animation is set to off to avoid lag)
-  public void display(int state) {
+  public void display() {
     switch (state) {
     case 1:
-      inter();
+      idle();
       break;
 
     case 2:
@@ -35,7 +39,7 @@ class Interface {
       break;
 
     default:
-      inter();
+      idle();
       break;
     }
 
@@ -46,7 +50,16 @@ class Interface {
     rendered = bool;
   }
 
-  private void inter() {
+  public void control() {
+    if (input) {
+      if (mouseX <= width && mouseX > width-150 && mouseY <= height && mouseY > height-150) menuToggle = !menuToggle;
+    }
+
+    if (menuToggle) state = 3;
+    else state = 2;
+  }
+
+  private void idle() {
     inMenu = false;
     rendered = false;
   }

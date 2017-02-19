@@ -24,9 +24,8 @@ PFont console;
 //checker to avoid unwanted double-clicking
 boolean ready = true;
 
-//UI state / toggles
-boolean menuToggle = false;
-int mode = 1;
+//UI input flag
+boolean input = false;
 
 //general use timer (mostly for animations)
 Timer timer = new Timer();
@@ -44,21 +43,24 @@ void setup() {
 }
 
 void draw() {
-  //display
-  if (menuToggle) mode = 3;
-  else mode = 2;
-  UI.display(mode);
-
-  //controls
+  //on mouse press, alert that there's input
   if (mousePressed) {
     if (ready) {
-
-      //menu toggle
-      if (mouseX <= width && mouseX > width-150 && mouseY <= height && mouseY > height-150) menuToggle = !menuToggle;
-
+      input = true;
       ready = false;
     }
   }
+
   //reset mouse press to avoid unwanted double-clicks
-  if (mousePressed == false) ready = true;
+  if (mousePressed == false) {
+    input = false;
+    ready = true;
+  }
+
+  //display
+  UI.control();
+  UI.display();
+  
+  //reset input to avoid unwanted double-clicks
+  input = false;
 }

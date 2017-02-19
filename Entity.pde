@@ -10,11 +10,14 @@ class Entity {
   PImage cover;
   boolean animate;
 
-  //initializes entity, and assigns it a number of key decisions to keep track of
-  Entity(String name, String img, boolean animate) {
-    this.name = name;
-    this.cover = loadImage(img);
-    this.animate = animate;
+  //conflicts
+  Conflict[] conflicts;
+
+  //initializes entity by accessing the database and fetching its main info and starting the conflict fill process
+  Entity(JSONObject dir) {
+    this.name = dir.getString("name");
+    this.cover = loadImage(dir.getString("cover"));
+    this.animate = dir.getBoolean("animate");
   }
 
   //assigns location to entity once it's been encountered
