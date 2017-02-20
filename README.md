@@ -56,19 +56,13 @@ Visually, all entities have visuals attatched to them. Since this is a text-only
 
 A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order:
 
-- Create choice UI functionality.
+- Implement idle mode.
 
-- Create branching narrative tracking.
-
-- Add narrative choice tracking.
-
-- Create conditional conflict handling.
-
-- Create map grid + algorithm to determine when to allocate entity location. 
+- Create map grid + algorithm to determine when to allocate entity location.
 
 - Tie entity locations to narration generation.
 
-- Implement idle mode.
+- Create conditional conflict handling.
 
 - Add entity locations in menu screen.
 

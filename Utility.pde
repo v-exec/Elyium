@@ -1,6 +1,6 @@
 public void onResume() {
   super.onResume();
-  
+
   //re-render visuals
   if (UI != null) UI.setRendered(false);
 }

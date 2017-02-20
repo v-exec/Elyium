@@ -2,7 +2,7 @@
 class Conflict {
   String name;
   String def;
-  String res;
+  String res ="null";
 
   Choice[] choices;
 
@@ -27,7 +27,7 @@ class Conflict {
 class Choice {
   String name;
   String def;
-  String res;
+  String res = "null";
   Conflict conflict;
 
   Choice(JSONObject dir) {

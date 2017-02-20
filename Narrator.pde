@@ -12,6 +12,8 @@ class Narrator {
   String text;
   Conflict current;
   Conflict sub;
+  Choice cho;
+  boolean resolved = false;
 
   //all entities
   Entity monument;
@@ -35,19 +37,32 @@ class Narrator {
     return text;
   }
 
-  //continues narrative by going down one branch of the narrative tree
-  // public String continueNarrative() {
-  // }
+  //continues narrative, or displays the conflict resolution and notes it in the master conflict
+  public String continueNarrative() {
+    if (resolved) {
+      text = cho.res;
+      current.res = cho.res;
+    } else text = sub.def;
+    return text;
+  }
 
   //gets the choices for the currently inhabited conflict
   public String getChoice(int choice) {
-    if (sub.choices.length > choice) {
-      text = sub.choices[choice].def;
-      return text;
+    if (resolved == false) {
+      if (sub.choices.length > choice) {
+        text = sub.choices[choice].def;
+        return text;
+      } else return "null";
     } else return "null";
   }
 
-  //alerts Narrator of choice taken by player
+  //alerts Narrator of choice taken by player, and goes down one branch of narrative tree if there is one, otherwise alerts Narrator of conflict resolution
   public void choose(int choice) {
+    if (sub.choices[choice].res == "null") {
+      sub = sub.choices[choice].conflict;
+    } else {
+      cho = sub.choices[choice];
+      resolved = true;
+    }
   }
 }

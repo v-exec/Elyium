@@ -13,9 +13,10 @@ class Interface {
   PImage menuIcon;
   PImage choiceIcon = loadImage("choice.png");
 
-  //text elements
+  //text elements and formatting
   String text;
-  String[] choices = new String[5];
+  String[] choices = new String[4];
+  int choiceSpacing = 120;
 
   //state of UI (1 = idle 2 = narrative 3 = menu)
   int state;
@@ -113,7 +114,7 @@ class Interface {
 
   //updates the current narrative
   private void updateNarrative() {
-    //text = narrator.continueNarrative();
+    text = narrator.continueNarrative();
     updateChoices();
   }
 
@@ -176,7 +177,7 @@ class Interface {
 
         int brightness = int(brightness(choiceIcon.pixels[loc]));
         if (int(random(0, 1000)) > 1) {
-          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width/10, y + (height/3 * 2) + (num * 100));
+          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width/10, y + (height/3 * 2) + (num * choiceSpacing));
         }
       }
     }
@@ -184,7 +185,7 @@ class Interface {
     textAlign(LEFT);
     textSize(24);
 
-    text(string, width/8, (height/3 * 2) + (num * 100), width - (width/10 * 2), 50);
+    text(string, width/8, (height/3 * 2) + (num * choiceSpacing), width - (width/10 * 2), 50);
   }
 
   ////////////////////////////////////////////////////MENU
@@ -234,12 +235,14 @@ class Interface {
   //handles all user input
   private void control() {
     if (input) {
-      if (mouseX <= width && mouseX > width-150 && mouseY <= height && mouseY > height-150) menuToggle = !menuToggle;
+      if (mouseX >= width-150 && mouseX <= width && mouseY >= height-150 && mouseY <= height) menuToggle = !menuToggle;
 
       for (int i = 0; i < choices.length; i++) {
         if (choices[i] != "null") {
-          //narrator.choose(i);
-          //refresh = true;
+          if (mouseX >= width/10 && mouseX <= width - width/10 && mouseY >= (height/3 * 2) + (i * choiceSpacing) && mouseY <= (height/3 * 2) + choiceSpacing + i * choiceSpacing) {
+            narrator.choose(i);
+            refresh = true;
+          }
         }
       }
     }
