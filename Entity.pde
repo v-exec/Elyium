@@ -40,12 +40,4 @@ class Entity {
     this.latitude = latitude;
     this.longitude = longitude;
   }
-
-  ////constructs narrative (sends to Narrator)
-  //public String constructNarrative() {
-  //  String text;
-  //  text = context;
-  //  text = text + conflicts[int(random(0, conflicts.length))].def;
-  //  return text;
-  //}
 }

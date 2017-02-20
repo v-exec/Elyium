@@ -58,9 +58,8 @@ void draw() {
   }
 
   //display
-  UI.control();
   UI.display();
-  
+
   //reset input to avoid unwanted double-clicks
   input = false;
 }

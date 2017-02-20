@@ -10,16 +10,21 @@ class Interface {
   boolean rendered = false;
 
   //UI elements
-  boolean inMenu = false;
   PImage menuIcon;
   PImage choiceIcon = loadImage("choice.png");
 
   //text elements
   String text;
+  String[] choices = new String[5];
 
   //state of UI (1 = idle 2 = narrative 3 = menu)
   int state;
+
+  //toggles for menu and data loading
   boolean menuToggle;
+  boolean inMenu = false;
+  boolean loaded = false;
+  boolean refresh = true;
 
   Interface() {
     fill(255);
@@ -47,25 +52,21 @@ class Interface {
     }
 
     displayMenu();
+    control();
   }
 
   public void setRendered(boolean bool) {
     rendered = bool;
   }
 
-  public void control() {
-    if (input) {
-      if (mouseX <= width && mouseX > width-150 && mouseY <= height && mouseY > height-150) menuToggle = !menuToggle;
-    }
-
-    if (menuToggle) state = 3;
-    else state = 2;
-  }
+  ////////////////////////////////////////////////////IDLE
 
   private void idle() {
     inMenu = false;
     rendered = false;
   }
+
+  ////////////////////////////////////////////////////NARRATIVE GEN
 
   private void narrative(Entity object) {
     inMenu = false;
@@ -76,30 +77,50 @@ class Interface {
     //refresh frames if ascii image is animated
     if (rendered == false) {
       background(0);
-      ASCII(object.animate);
+      displayImage(object.animate);
       if (object.animate == false) rendered = true;
     }
 
-    //get and display narrative
-    displayNarrative(object);
+    //update narrative information (once)
+    if (refresh) {
+      updateNarrative(object);
+      refresh = false;
+    }
+
+    //display narrative
+    displayNarrative();
 
     //get and display choices
-    displayChoice(0, "Push the extruded wall.");
-    displayChoice(1, "Pull the extrusion.");
+    for (int i = 0; i < choices.length; i++) {
+      if (choices[i] != "null") displayChoice(i, choices[i]);
+    }
   }
 
-  private void menu() {
-    inMenu = true;
-    coords();
-    rendered = false;
+  private void updateNarrative(Entity object) {
+    text = narrator.getNarrative(object);
+
+    choices[0] = "Push the extruded wall.";
+    choices[1] = "Pull the extrusion.";
+    choices[2] = "null";
+    choices[3] = "null";
+    choices[4] = "null";
   }
 
-  private void ASCII(boolean animate) {
-    source.loadPixels();
+  ////////////////////////////////////////////////////NARRATIVE DISPLAY
 
+  private void displayNarrative() {
+    rectMode(CORNER);
+    textAlign(LEFT);
+    textSize(24);
+
+    text(text, width/10, height/3, width - (width/10 * 2), height - height/4);
+  }
+
+  private void displayImage(boolean animate) {
     textAlign(CENTER);
-
     textSize(12);
+
+    source.loadPixels();
 
     for (int x = 0; x < source.width; x += 10) {
       for (int y = 0; y < source.height; y += 10) {
@@ -117,19 +138,8 @@ class Interface {
     }
   }
 
-  private void displayNarrative(Entity object) {
-    rectMode(CORNER);
-    textAlign(LEFT);
-    fill(255);
-    textSize(24);
-
-    text = narrator.getNarrative(object);
-    text(text, width/10, height/3, width - (width/10 * 2), height - height/4);
-  }
-
   private void displayChoice(int num, String string) {
     textAlign(CENTER);
-    fill(255);
     textSize(12);
 
     choiceIcon.loadPixels();
@@ -146,15 +156,35 @@ class Interface {
     }
     rectMode(CORNER);
     textAlign(LEFT);
-    fill(255);
     textSize(24);
 
     text(string, width/8, (height/3 * 2) + (num * 100), width - (width/10 * 2), 50);
   }
 
+  ////////////////////////////////////////////////////MENU
+
+  private void menu() {
+    inMenu = true;
+    coords();
+    rendered = false;
+  }
+
+  private void coords() {
+    background(0);
+    textAlign(CENTER);
+    textSize(24);
+
+    //coordinates
+    if (mapper.getHasLocation()) {
+      text("Lat: " + mapper.getLatitude(), width/2, height/10);
+      text("Lon: " + mapper.getLongitude(), width/2, height/10 + 40);
+    } else text("No permissions to access location", width/2, height/10);
+  }
+
+  ////////////////////////////////////////////////////ALWAYS DISPLAY
+
   private void displayMenu() {
     textAlign(CENTER);
-    fill(255);
     textSize(12);
 
     if (inMenu) menuIcon = loadImage("menuOn.png");
@@ -173,16 +203,12 @@ class Interface {
     }
   }
 
-  private void coords() {
-    background(0);
-    fill(255);
-    textAlign(CENTER);
-    textSize(24);
+  private void control() {
+    if (input) {
+      if (mouseX <= width && mouseX > width-150 && mouseY <= height && mouseY > height-150) menuToggle = !menuToggle;
+    }
 
-    //coordinates
-    if (mapper.getHasLocation()) {
-      text("Lat: " + mapper.getLatitude(), width/2, height/10);
-      text("Lon: " + mapper.getLongitude(), width/2, height/10 + 40);
-    } else text("No permissions to access location", width/2, height/10);
+    if (menuToggle) state = 3;
+    else state = 2;
   }
 }

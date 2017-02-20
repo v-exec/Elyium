@@ -30,9 +30,7 @@ class Choice {
   Choice(JSONObject dir) {
     this.name = dir.getString("name");
     this.def = dir.getString("def");
-    
     if (dir.hasKey("res")) this.res = dir.getString("res");
-    
     if (dir.hasKey("con")) this.conflict = new Conflict(dir.getJSONObject("con"));
   }
 }

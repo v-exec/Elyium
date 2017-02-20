@@ -26,4 +26,7 @@ class Narrator {
     text = object.context;
     return text + "\n" + "\n" + object.conflicts[int(random(0, object.conflicts.length))].def;
   }
+
+  //public String getChoice(Entity object, int choiceNum) {
+  //}
 }
