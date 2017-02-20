@@ -56,10 +56,6 @@ Visually, all entities have visuals attatched to them. Since this is a text-only
 
 A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order:
 
-- Create persistent narrative fetcher.
-
-- Create persistent choice fetcher.
-
 - Create choice UI functionality.
 
 - Create branching narrative tracking.

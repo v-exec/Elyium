@@ -6,7 +6,7 @@ class Interface {
   //characters for ASCII art
   String[] chars = {".", "'", "-", "+", ";", "=", "x", "*", "#"};
 
-  //boolean to stop cover image from being re-rendered
+  //boolean to stop cover image from being re-rendered (to avoid lag for certain images)
   boolean rendered = false;
 
   //UI elements
@@ -25,13 +25,14 @@ class Interface {
   boolean inMenu = false;
   boolean loaded = false;
   boolean refresh = true;
+  boolean inNarrative = false;
 
   Interface() {
     fill(255);
     noStroke();
   }
 
-  //displays UI, animates UI depending on entity cover (if cover is too bright and renders too much text, animation is set to off to avoid lag)
+  //displays respective UI mode
   public void display() {
     switch (state) {
     case 1:
@@ -51,16 +52,19 @@ class Interface {
       break;
     }
 
+    //always display menu and keep track of input
     displayMenu();
     control();
   }
 
+  //determines whether or not the current image has been rendered (used to animate some images, and keep others static)
   public void setRendered(boolean bool) {
     rendered = bool;
   }
 
   ////////////////////////////////////////////////////IDLE
 
+  //idle mode
   private void idle() {
     inMenu = false;
     rendered = false;
@@ -81,33 +85,46 @@ class Interface {
       if (object.animate == false) rendered = true;
     }
 
-    //update narrative information (once)
+    //begin narrative
+    if (inNarrative == false) {
+      beginNarrative(object);
+      refresh = false;
+      inNarrative = true;
+    }
+
+    //continue narrative after player has provided choice (input)
     if (refresh) {
-      updateNarrative(object);
+      updateNarrative();
       refresh = false;
     }
 
     //display narrative
     displayNarrative();
 
-    //get and display choices
-    for (int i = 0; i < choices.length; i++) {
-      if (choices[i] != "null") displayChoice(i, choices[i]);
-    }
+    //display choices
+    displayChoices();
   }
 
-  private void updateNarrative(Entity object) {
+  //begins narrative sequence
+  private void beginNarrative(Entity object) {
     text = narrator.getNarrative(object);
+    updateChoices();
+  }
 
-    choices[0] = "Push the extruded wall.";
-    choices[1] = "Pull the extrusion.";
-    choices[2] = "null";
-    choices[3] = "null";
-    choices[4] = "null";
+  //updates the current narrative
+  private void updateNarrative() {
+    //text = narrator.continueNarrative();
+    updateChoices();
+  }
+
+  //updates the current set of choices
+  private void updateChoices() {
+    for (int i = 0; i < choices.length; i++) choices[i] = narrator.getChoice(i);
   }
 
   ////////////////////////////////////////////////////NARRATIVE DISPLAY
 
+  //displays narrative text of a conflict
   private void displayNarrative() {
     rectMode(CORNER);
     textAlign(LEFT);
@@ -116,6 +133,14 @@ class Interface {
     text(text, width/10, height/3, width - (width/10 * 2), height - height/4);
   }
 
+  //displays all of the choices in a conflict
+  private void displayChoices() {
+    for (int i = 0; i < choices.length; i++) {
+      if (choices[i] != "null") displayChoice(i, choices[i]);
+    }
+  }
+
+  //displays entity image
   private void displayImage(boolean animate) {
     textAlign(CENTER);
     textSize(12);
@@ -138,6 +163,7 @@ class Interface {
     }
   }
 
+  //displays a single choice in its respective location, along with its small UI line next to it
   private void displayChoice(int num, String string) {
     textAlign(CENTER);
     textSize(12);
@@ -163,18 +189,19 @@ class Interface {
 
   ////////////////////////////////////////////////////MENU
 
+  //displays menu
   private void menu() {
     inMenu = true;
     coords();
     rendered = false;
   }
 
+  //draws real world player coordinates
   private void coords() {
     background(0);
     textAlign(CENTER);
     textSize(24);
 
-    //coordinates
     if (mapper.getHasLocation()) {
       text("Lat: " + mapper.getLatitude(), width/2, height/10);
       text("Lon: " + mapper.getLongitude(), width/2, height/10 + 40);
@@ -183,6 +210,7 @@ class Interface {
 
   ////////////////////////////////////////////////////ALWAYS DISPLAY
 
+  //displays small menu icon on bottom right corner of screen. updates it accordingly (based on user input)
   private void displayMenu() {
     textAlign(CENTER);
     textSize(12);
@@ -203,9 +231,17 @@ class Interface {
     }
   }
 
+  //handles all user input
   private void control() {
     if (input) {
       if (mouseX <= width && mouseX > width-150 && mouseY <= height && mouseY > height-150) menuToggle = !menuToggle;
+
+      for (int i = 0; i < choices.length; i++) {
+        if (choices[i] != "null") {
+          //narrator.choose(i);
+          //refresh = true;
+        }
+      }
     }
 
     if (menuToggle) state = 3;

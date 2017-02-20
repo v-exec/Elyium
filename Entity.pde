@@ -22,7 +22,7 @@ class Entity {
     this.cover = loadImage(dir.getString("cover"));
     this.animate = dir.getBoolean("animate");
     this.context = dir.getString("context");
-    
+
     this.latitude = dir.getFloat("latitude");
     this.longitude = dir.getFloat("longitude");
 
