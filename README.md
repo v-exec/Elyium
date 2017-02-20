@@ -56,13 +56,29 @@ Visually, all entities have visuals attatched to them. Since this is a text-only
 
 A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order:
 
-- Finish developing, organizing, and implementing narrative construction system + choice button functionality. This system handles the picking of narrative sequences, as well as managing the consequences of player choices.
+- Create persistent narrative fetcher.
 
-- Create map grid + algorithm to determine when to allocate entity location, and tie that to the narration generation.
+- Create persistent choice fetcher.
 
-- Add entity locations in menu screen + interaction options for when the user is near them.
+- Create choice UI functionality.
 
-- Create save functionality. After every narrative sequence, this takes the player and entity stored in the narrative system, as well as all of the entities' last known location.
+- Create branching narrative tracking.
+
+- Add narrative choice tracking.
+
+- Create conditional conflict handling.
+
+- Create map grid + algorithm to determine when to allocate entity location. 
+
+- Tie entity locations to narration generation.
+
+- Implement idle mode.
+
+- Add entity locations in menu screen.
+
+- Add interaction options for when the user is near entities, in menu.
+
+- Create save functionality that triggers after every narrative sequence has been resolved.
 
 - Add startup and transition animations.
 

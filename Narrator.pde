@@ -22,11 +22,8 @@ class Narrator {
     //other
   }
 
-  public String constructNarrative(Entity object) {
-    directory = data.getJSONObject(object.name);
-    text = directory.getString("context");
-    directory = directory.getJSONObject("conflicts");
-    directory = directory.getJSONObject("K1");
-    return text + "\n" + "\n" + directory.getString("def");
+  public String getNarrative(Entity object) {
+    text = object.context;
+    return text + "\n" + "\n" + object.conflicts[int(random(0, object.conflicts.length))].def;
   }
 }

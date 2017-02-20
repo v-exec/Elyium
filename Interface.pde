@@ -14,6 +14,9 @@ class Interface {
   PImage menuIcon;
   PImage choiceIcon = loadImage("choice.png");
 
+  //text elements
+  String text;
+
   //state of UI (1 = idle 2 = narrative 3 = menu)
   int state;
   boolean menuToggle;
@@ -114,14 +117,14 @@ class Interface {
     }
   }
 
-
   private void displayNarrative(Entity object) {
     rectMode(CORNER);
     textAlign(LEFT);
     fill(255);
     textSize(24);
 
-    text(narrator.constructNarrative(object), width/10, height/3, width - (width/10 * 2), height - height/4);
+    text = narrator.getNarrative(object);
+    text(text, width/10, height/3, width - (width/10 * 2), height - height/4);
   }
 
   private void displayChoice(int num, String string) {
