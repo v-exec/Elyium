@@ -1,6 +1,8 @@
-#Elyium
+# Elyium
 
-###What it is
+![](show.png)
+
+### What it is
 
 _Elyium_ is a *work in progress* mobile game with a text-only interface that motivates users to investigate an alternative 'fantasy science' universe synchronized with our own.
 
@@ -8,7 +10,7 @@ The user is granted access to the world of _Elyium_ through their phone, a world
 
 Visually, the game is exclusively text based, inspired by the aesthetic of a computer terminal, with regular use of ASCII art.
 
-###Resources & Inspiration
+### Resources & Inspiration
 
 [Processing for Android](http://android.processing.org/index.html) - Tool
 
@@ -40,9 +42,9 @@ As subjective and personal as music is, I feel like this song successfully conve
 
 The [beautiful](https://s-media-cache-ak0.pinimg.com/736x/d4/2d/17/d42d1776fd77f66582758f56cc86ffa5.jpg) [art](http://nerdreactor.com/wp-content/uploads/2014/06/art-of-watch-dogs-6.jpg) of [Dedsec](http://orig08.deviantart.net/d21f/f/2016/166/3/f/dedsec_skull_noise_2_by_junguler-da6cg74.gif) - Visual Aesthetic
 
-_WatchDogs 2_'s creative direction is undeniably unique. Ever since the first game, I've had a deep interest in the digital-centric design of Dedsec's art. As much as I'd like to create visuals with this much detail, refinement, and *animation*, this is something that requires a lot of time dedicated to content creation. Time I simply don't have. However, this still acts as the primary inspiration for the graphical user interface, as there are many elements to the style that are not as time-consuming, but still very powerful.
+_WatchDogs 2_'s creative direction is undeniably unique. Ever since the first game, I've had a deep interest in the digital-centric design of Dedsec's art. I'd like _Elyium_'s visuals to be similar, and somewhat more minimal.
 
-###How it works
+### How it works
 
 When the user logs in for the first time, their location is tracked. As the user roams around, entities are procedurally spawned in their surroundings.
 
@@ -52,24 +54,40 @@ As the player discovers more key entities and interacts with them, other key ent
 
 Visually, all entities have visuals attatched to them. Since this is a text-only experience in a terminal-like environment, visuals are limited to ASCII. All visuals are parsed through an ASCII filter which translates regular images into ASCII characters.
 
-###Plan
+### Plan
 
-A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order:
+A breakdown of the remaining tasks (in their respective systems) to be completed for the production of this project, in (more or less) chronological order.
+
+##### Gameplay
 
 - Implement idle mode.
 
-- Create map grid + algorithm to determine when to allocate entity location.
+- Create map grid and algorithm to determine when to allocate entity location.
 
-- Tie entity locations to narration generation.
+- Bring together entity map and narrative systems.
 
 - Create conditional conflict handling.
+
+- Add conflict reset feature.
+
+##### Interfacing
 
 - Add entity locations in menu screen.
 
 - Add interaction options for when the user is near entities, in menu.
 
+- Create startup and transition animations.
+
+- Add entity location change option for fixing undesireable entity spawns.
+
+##### Foundation
+
 - Create save functionality that triggers after every narrative sequence has been resolved.
 
-- Add startup and transition animations.
+- Verify phone compatabilities.
 
-- Make more narrative content and images, refine narrative system, create main and side 'quests'.
+##### Content
+
+- Create database management tool that makes creating entities, conflicts, choices, resolutions, and conditions more intuitive.
+
+- Make more narrative content (and images?), create main and side 'quests'.
