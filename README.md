@@ -58,7 +58,7 @@ Visually, all entities have visuals attatched to them. Since this is a text-only
 
 A breakdown of the remaining tasks (in their respective systems) to be completed for the production of this project, in (more or less) chronological order.
 
-##### Gameplay
+#### Gameplay
 
 - Implement idle mode.
 
@@ -70,7 +70,7 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 - Add conflict reset feature.
 
-##### Interfacing
+#### Interfacing
 
 - Add entity locations in menu screen.
 
@@ -80,13 +80,13 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 - Add entity location change option for fixing undesireable entity spawns.
 
-##### Foundation
+#### Foundation
 
 - Create save functionality that triggers after every narrative sequence has been resolved.
 
 - Verify phone compatabilities.
 
-##### Content
+#### Content
 
 - Create database management tool that makes creating entities, conflicts, choices, resolutions, and conditions more intuitive.
 
