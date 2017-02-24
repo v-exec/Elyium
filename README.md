@@ -8,7 +8,7 @@ _Elyium_ is a *work in progress* alternate reality game, and a platform for narr
 
 A breakdown of the remaining tasks (in their respective systems) to be completed for the production of this project, in (more or less) chronological order.
 
-#### Gameplay
+#### Narrative
 
 - Implement idle mode.
 
