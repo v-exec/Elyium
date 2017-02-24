@@ -1,9 +1,5 @@
 # Elyium
 
-[]
-
-### What it is
-
 _Elyium_ is a *work in progress* alternate reality game, and a platform for narrative experiences.
 
 [More information on this project can be found here.](v-os.ca/elyium)
