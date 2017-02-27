@@ -42,6 +42,7 @@ class Narrator {
     if (resolved) {
       text = cho.res;
       current.res = cho.name;
+      timer.wait(10000);
     } else text = sub.def;
     return text;
   }

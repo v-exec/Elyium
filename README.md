@@ -10,8 +10,6 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 #### Narrative
 
-- Implement idle mode.
-
 - Create map grid and algorithm to determine when to allocate entity location.
 
 - Bring together entity map and narrative systems.

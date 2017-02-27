@@ -2,20 +2,30 @@ class Timer {
   int currentTime = 0;
   int recordTime = 0;
   boolean isTiming = false;
+  boolean done = false;
 
   Timer() {
   }
 
-  public boolean wait(int time) {
+  public void wait(int time) {
     currentTime = millis();
+
     if (isTiming == false) {
-      recordTime = millis() + time;
+      recordTime = currentTime + time;
+      done = false;
       isTiming = true;
     }
+  }
 
-    if (recordTime > currentTime) {
-      isTiming = false;
-      return true;
-    } else return false;
+  public boolean timed() {
+    currentTime = millis();
+
+    if (isTiming == true) {
+      if (recordTime < currentTime) {
+        isTiming = false;
+        done = true;
+      } else done = false;
+    }
+    return done;
   }
 }

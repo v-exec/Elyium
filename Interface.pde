@@ -2,6 +2,7 @@ class Interface {
   //images for cover ASCII art
   PImage source;
   int brightnessThresh = 50;
+  int imageDensity = 10;
 
   //characters for ASCII art
   String[] chars = {".", "'", "-", "+", ";", "=", "x", "*", "#"};
@@ -24,7 +25,6 @@ class Interface {
   //toggles for menu and data loading
   boolean menuToggle;
   boolean inMenu = false;
-  boolean loaded = false;
   boolean refresh = true;
   boolean inNarrative = false;
 
@@ -35,6 +35,10 @@ class Interface {
 
   //displays respective UI mode
   public void display() {
+
+    //get input and determine UI state
+    control();
+
     switch (state) {
     case 1:
       idle();
@@ -53,21 +57,24 @@ class Interface {
       break;
     }
 
-    //always display menu and keep track of input
+    //display menu at all times
     displayMenu();
-    control();
   }
 
-  ////////////////////////////////////////////////////IDLE
+  ////////////////////////////////////////////////////MODES
 
   //idle mode
   private void idle() {
     inMenu = false;
     rendered = false;
+    inNarrative = false;
+    background(0);
+    source = loadImage("idle.png");
+
+    displayIdle();
   }
 
-  ////////////////////////////////////////////////////NARRATIVE GEN
-
+  //narrative mode
   private void narrative(Entity object) {
     inMenu = false;
 
@@ -108,6 +115,15 @@ class Interface {
     displayChoices();
   }
 
+  //menu mode
+  private void menu() {
+    inMenu = true;
+    displayCoords();
+    rendered = false;
+  }
+
+  ////////////////////////////////////////////////////NARRATIVE GENERATION
+
   //begins narrative sequence
   private void beginNarrative(Entity object) {
     text = narrator.getNarrative(object);
@@ -125,114 +141,7 @@ class Interface {
     for (int i = 0; i < choices.length; i++) choices[i] = narrator.getChoice(i);
   }
 
-  ////////////////////////////////////////////////////NARRATIVE DISPLAY
-
-  //displays narrative text of a conflict
-  private void displayNarrative() {
-    rectMode(CORNER);
-    textAlign(LEFT);
-    textSize(24);
-
-    text(text, width/10, height/3, width - (width/10 * 2), height - height/4);
-  }
-
-  //displays all of the choices in a conflict
-  private void displayChoices() {
-    for (int i = 0; i < choices.length; i++) {
-      if (choices[i] != "null") displayChoice(i, choices[i]);
-    }
-  }
-
-  //displays entity image
-  private void displayImage(boolean animate) {
-    textAlign(CENTER);
-    textSize(12);
-
-    source.loadPixels();
-
-    for (int x = 0; x < source.width; x += 10) {
-      for (int y = 0; y < source.height; y += 10) {
-        int loc = x + (y * source.width);
-
-        int brightness = int(brightness(source.pixels[loc]));
-        if (animate == false) {
-          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width/4 + (width/2 - 500), y + height/20);
-        } else {
-          if (int(random(0, 1000)) > 1) {
-            if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width/4 + (width/2 - 500), y + height/20);
-          }
-        }
-      }
-    }
-  }
-
-  //displays a single choice in its respective location, along with its small UI line next to it
-  private void displayChoice(int num, String string) {
-    textAlign(CENTER);
-    textSize(12);
-
-    choiceIcon.loadPixels();
-
-    for (int x = 0; x <= choiceIcon.width; x += 10) {
-      for (int y = 0; y <= choiceIcon.height; y += 10) {
-        int loc = constrain(x + (y * choiceIcon.width), 0, choiceIcon.pixels.length-1);
-
-        int brightness = int(brightness(choiceIcon.pixels[loc]));
-        if (int(random(0, 1000)) > 1) {
-          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width/10, y + (height/3 * 2) + (num * choiceSpacing));
-        }
-      }
-    }
-    rectMode(CORNER);
-    textAlign(LEFT);
-    textSize(24);
-
-    text(string, width/8, (height/3 * 2) + (num * choiceSpacing), width - (width/10 * 2), 50);
-  }
-
-  ////////////////////////////////////////////////////MENU
-
-  //displays menu
-  private void menu() {
-    inMenu = true;
-    coords();
-    rendered = false;
-  }
-
-  //draws real world player coordinates
-  private void coords() {
-    background(0);
-    textAlign(CENTER);
-    textSize(24);
-
-    if (mapper.hasLocation) {
-      text("Lat: " + mapper.latitude, width/2, height/10);
-      text("Lon: " + mapper.longitude, width/2, height/10 + 40);
-    } else text("No permissions to access location", width/2, height/10);
-  }
-
-  ////////////////////////////////////////////////////ALWAYS DISPLAY
-
-  //displays small menu icon on bottom right corner of screen. updates it accordingly (based on user input)
-  private void displayMenu() {
-    textAlign(CENTER);
-    textSize(12);
-
-    if (inMenu) menuIcon = loadImage("menuOn.png");
-    else menuIcon = loadImage("menuOff.png");
-    menuIcon.loadPixels();
-
-    for (int x = 0; x <= menuIcon.width; x += 10) {
-      for (int y = 0; y <= menuIcon.height; y += 10) {
-        int loc = constrain(x + (y * menuIcon.width), 0, menuIcon.pixels.length-1);
-
-        int brightness = int(brightness(menuIcon.pixels[loc]));
-        if (int(random(0, 1000)) > 1) {
-          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width - 100, y + height - 100);
-        }
-      }
-    }
-  }
+  ////////////////////////////////////////////////////CONTROLS
 
   //handles all user input
   private void control() {
@@ -250,6 +159,122 @@ class Interface {
     }
 
     if (menuToggle) state = 3;
+    else if (timer.timed()) state = 1;
     else state = 2;
+  }
+
+  ////////////////////////////////////////////////////DISPLAY
+
+  private void displayIdle() {
+    textAlign(CENTER);
+    textSize(12);
+
+    source.loadPixels();
+
+    for (int x = 0; x < source.width; x += imageDensity) {
+      for (int y = 0; y < source.height; y += imageDensity) {
+        int loc = x + (y * source.width);
+
+        int brightness = int(brightness(source.pixels[loc]));
+        if (int(random(0, 1000)) > 1) {
+          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + (width/2 - 250), y + (height/2 - 250));
+        }
+      }
+    }
+  }
+
+  //displays narrative text of a conflict
+  private void displayNarrative() {
+    rectMode(CORNER);
+    textAlign(LEFT);
+    textSize(24);
+    text(text, width/10, height/3, width - (width/10 * 2), height - height/4);
+  }
+
+  //displays all of the choices in a conflict
+  private void displayChoices() {
+    for (int i = 0; i < choices.length; i++) {
+      if (choices[i] != "null") displayChoice(i, choices[i]);
+    }
+  }
+
+  //displays entity image
+  private void displayImage(boolean animate) {
+    textAlign(CENTER);
+    textSize(12);
+
+    source.loadPixels();
+
+    for (int x = 0; x < source.width; x += imageDensity) {
+      for (int y = 0; y < source.height; y += imageDensity) {
+        int loc = x + (y * source.width);
+
+        int brightness = int(brightness(source.pixels[loc]));
+        if (animate == false) {
+          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + (width/2 - 250), y + height/20);
+        } else {
+          if (int(random(0, 1000)) > 1) {
+            if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + (width/2 - 250), y + height/20);
+          }
+        }
+      }
+    }
+  }
+
+  //displays a single choice in its respective location, along with its small UI line next to it
+  private void displayChoice(int num, String string) {
+    textAlign(CENTER);
+    textSize(12);
+
+    choiceIcon.loadPixels();
+
+    for (int x = 0; x <= choiceIcon.width; x += imageDensity) {
+      for (int y = 0; y <= choiceIcon.height; y += imageDensity) {
+        int loc = constrain(x + (y * choiceIcon.width), 0, choiceIcon.pixels.length-1);
+
+        int brightness = int(brightness(choiceIcon.pixels[loc]));
+        if (int(random(0, 1000)) > 1) {
+          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width/10, y + (height/3 * 2) + (num * choiceSpacing));
+        }
+      }
+    }
+    rectMode(CORNER);
+    textAlign(LEFT);
+    textSize(24);
+
+    text(string, width/8, (height/3 * 2) + (num * choiceSpacing), width - (width/10 * 2), 50);
+  }
+
+  //displays small menu icon on bottom right corner of screen. updates it accordingly (based on user input)
+  private void displayMenu() {
+    textAlign(CENTER);
+    textSize(12);
+
+    if (inMenu) menuIcon = loadImage("menuOn.png");
+    else menuIcon = loadImage("menuOff.png");
+    menuIcon.loadPixels();
+
+    for (int x = 0; x <= menuIcon.width; x += imageDensity) {
+      for (int y = 0; y <= menuIcon.height; y += imageDensity) {
+        int loc = constrain(x + (y * menuIcon.width), 0, menuIcon.pixels.length-1);
+
+        int brightness = int(brightness(menuIcon.pixels[loc]));
+        if (int(random(0, 1000)) > 1) {
+          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width - 100, y + height - 100);
+        }
+      }
+    }
+  }
+
+  //draws real world player coordinates
+  private void displayCoords() {
+    background(0);
+    textAlign(CENTER);
+    textSize(24);
+
+    if (mapper.hasLocation) {
+      text("Lat: " + mapper.latitude, width/2, height/10);
+      text("Lon: " + mapper.longitude, width/2, height/10 + 40);
+    } else text("No permissions to access location", width/2, height/10);
   }
 }
