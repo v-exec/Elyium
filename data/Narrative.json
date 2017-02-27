@@ -2,7 +2,7 @@
 	"monument": {
 		"name": "monument",
 		"cover": "1.png",
-		"animate": true,
+		"animate": false,
 
 		"latitude": 0.001,
 		"longitude": 0.001,

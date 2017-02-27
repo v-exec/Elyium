@@ -41,7 +41,7 @@ class Narrator {
   public String continueNarrative() {
     if (resolved) {
       text = cho.res;
-      current.res = cho.res;
+      current.res = cho.name;
     } else text = sub.def;
     return text;
   }

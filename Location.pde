@@ -23,23 +23,6 @@ class Mapper implements LocationListener {
     }
   }
 
-  //gets-sets
-  public float getLatitude() {
-    return latitude;
-  }
-
-  public float getLongitude() {
-    return longitude;
-  }
-
-  public void setHasLocation(boolean loc) {
-    hasLocation = loc;
-  }
-
-  public boolean getHasLocation() {
-    return hasLocation;
-  }
-
   //must implement abstract methods from LocationListener
   public void onProviderDisabled (String provider) {
     //clear

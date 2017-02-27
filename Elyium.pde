@@ -27,7 +27,7 @@ boolean ready = true;
 //UI input flag
 boolean input = false;
 
-//general use timer (mostly for animations)
+//general use timer
 Timer timer = new Timer();
 
 void setup() {

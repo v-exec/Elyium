@@ -58,11 +58,6 @@ class Interface {
     control();
   }
 
-  //determines whether or not the current image has been rendered (used to animate some images, and keep others static)
-  public void setRendered(boolean bool) {
-    rendered = bool;
-  }
-
   ////////////////////////////////////////////////////IDLE
 
   //idle mode
@@ -79,11 +74,18 @@ class Interface {
     //get ascii image
     source = object.cover;
 
-    //refresh frames if ascii image is animated
+    //render once
     if (rendered == false) {
       background(0);
       displayImage(object.animate);
-      if (object.animate == false) rendered = true;
+    }
+
+    //if image is not to be animated, refresh the rest of the screen
+    if (object.animate == false) {
+      fill(0);
+      rect(0, height/3, width, (height - height/3));
+      rendered = true;
+      fill(255);
     }
 
     //begin narrative
@@ -203,9 +205,9 @@ class Interface {
     textAlign(CENTER);
     textSize(24);
 
-    if (mapper.getHasLocation()) {
-      text("Lat: " + mapper.getLatitude(), width/2, height/10);
-      text("Lon: " + mapper.getLongitude(), width/2, height/10 + 40);
+    if (mapper.hasLocation) {
+      text("Lat: " + mapper.latitude, width/2, height/10);
+      text("Lon: " + mapper.longitude, width/2, height/10 + 40);
     } else text("No permissions to access location", width/2, height/10);
   }
 

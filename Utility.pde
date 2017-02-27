@@ -2,7 +2,7 @@ public void onResume() {
   super.onResume();
 
   //re-render visuals
-  if (UI != null) UI.setRendered(false);
+  if (UI != null) UI.rendered = false;
 }
 
 public void onPause() {
@@ -18,8 +18,8 @@ void onPermissionsGranted() {
     mapper = new Mapper();
     locManager = (LocationManager)locContext.getSystemService(Context.LOCATION_SERVICE); 
     locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mapper);
-    mapper.setHasLocation(true);
+    mapper.hasLocation = true;
   } else {
-    mapper.setHasLocation(false);
+    mapper.hasLocation = false;
   }
 }
