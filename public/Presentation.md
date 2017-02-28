@@ -2,7 +2,7 @@
 
 ## Functionality
 
-![](images/Elyium UI.png)
+![](Elyium UI.png)
 
 ## Design Research Questions - As Motivation
 
