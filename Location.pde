@@ -1,13 +1,17 @@
+/*
+LOCATION
+ 
+ This section takes care of getting the player position, as well as assigning entities' locations, and then triggering a narrative sequence when an entity is encountered for the first time.
+ /TODO/
+ The system for spawning entities is not currently developed. Currently, it is simply keeping track of the player's real-world location.
+ /TODO/
+ */
+
 //location listener and map provider
 class Mapper implements LocationListener {
   //location coordinates
   float latitude  = 0;
   float longitude = 0;
-
-  //coordinates to keep track of grid-based distance moved
-  float recLat = 0;
-  float recLon = 0;
-  float unit = 2;
 
   //internal check variable
   boolean hasLocation = false;
@@ -16,11 +20,6 @@ class Mapper implements LocationListener {
   public void onLocationChanged(Location location) {
     latitude  = (float)location.getLatitude();
     longitude = (float)location.getLongitude();
-
-    if (dist(latitude, longitude, recLat, recLon) > unit) {
-      recLat = latitude;
-      recLon = longitude;
-    }
   }
 
   //must implement abstract methods from LocationListener

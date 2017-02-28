@@ -1,3 +1,16 @@
+/*
+NARRATOR
+ 
+ This section takes care of initializing all entities, and beginning the data population process (see Entity.pde and Content.pde for the two other parts of the process) through the JSON database.
+ The narrator also handles the providing of narrative data to the interface (see Interface.pde) by navigating the narrative data structures (entities).
+ 
+ /TODO/
+ The narrator keeps track of all encountered entities.
+ After each narrative sequence is resolved, the unique resolution reached by the player is saved to the conflict, which is then written onto the JSON database.
+ This acts as the saving system. It is also used for conditional conflicts, when a conflict must see if another conflict has been resolved in a specific way.
+ /TODO/
+ */
+
 class Narrator {
   //list of all entities
   Entity[] entities = new Entity[2];

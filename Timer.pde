@@ -1,3 +1,11 @@
+/*
+TIMER
+ 
+ This section acts as a standalone module that simply allows to time events.
+ Currently, it is being used to trigger the idle mode (see Interface.pde) after a narrative conflict has been resolved.
+ It will also likely be used in the entity spawning system (see Location.pde) to control the entity spawn frequency.
+ */
+
 class Timer {
   int currentTime = 0;
   int recordTime = 0;

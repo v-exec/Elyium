@@ -1,3 +1,33 @@
+/*
+INTERFACE
+ 
+ This section handles all interfacing, user input management, and user interface status.
+ 
+ The inteface contains 3 distinc 'modes' or 'states'.
+ These 3 states act as management tools / triggers for particular data flow. In other words, many actions related to narrative and location functionalities are dependant on the UI state.
+ 
+ Idle: The state in which the player is not in a narrative sequence, and is simply walking around.
+ In this state, the location (see Location.pde) is taking care of getting the player's position relative to other entities, and deciding when to spawn a new entity at the player's current location.
+ 
+ Narrative: The state in which the player has encountered an entity, and is engaged in a narrative sequence.
+ In this state, the UI asks for certain bits of narrative information fron the narrator (see Narrator.pde) and puts them together to construct the interface.
+ Through the narrator, the interface asks for an image contained within the entity in question, the entity's "context" (piece of introductory narrative), and the conflicts and their respective choices.
+ Then, the image, as well as other UI elements, are translated into ASCII using an interface method and displayed accordingly.
+ Which conflict is presented is dependant on the narrator. The narrator handles the navigation through the entitiy's branching narrative. The interface only asks for information and visualizes it.
+ Depending on the entity's image and an 'animate' boolean contained in the entity, the image is sometimes animated, sometimes not (to avoid lag, and for aesthetic purposes).
+ If it is being animated, the entire frame is refreshed. Otherwise, all space under the image (where text, UI, and choices are displayed) is refreshed.
+ 
+ Menu: The state in which the player can enter at any time (regardless of whether they're in the idle state or the narrative state).
+ /TODO/
+ The menu acts as a map tool that shows the player their current real-world coordinates, and the real-world coordinates of all entities they've encountered.
+ On the first encounter with an entity, the player is forced into a narrative sequence. In subsequent encounters, however, the player must choose to interact with the entity through the menu.
+ The idea is to avoid undesireable engagement in narrative sequences.
+ The encountered entities in the menu are ordered by proximity to the player. Once close enough, they are highlighted to show that they can now be interacted with.
+ /TODO/
+ 
+ At all times, the menu button at the bottom right corner is displayed, and the interface is waiting for potential input.
+ */
+
 class Interface {
   //images for cover ASCII art
   PImage source;
@@ -266,7 +296,7 @@ class Interface {
     }
   }
 
-  //draws real world player coordinates
+  //draws real-world player coordinates
   private void displayCoords() {
     background(0);
     textAlign(CENTER);

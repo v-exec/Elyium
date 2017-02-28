@@ -1,3 +1,11 @@
+/*
+UTILITY
+ 
+ This section contains all phone-specific functionality.
+ Currently, it is being used to ensure that multitasking in a phone does not affect the game, as well as checking for permission for location tracking.
+ It will also likely be used for phone vibration for user input feedback.
+ */
+
 public void onResume() {
   super.onResume();
 

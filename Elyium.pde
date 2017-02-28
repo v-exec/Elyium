@@ -1,3 +1,12 @@
+/*
+ELYIUM
+ 
+ This section acts as the primary setup and loop.
+ It inializes the unique actors (objects) like the location tracking, narration system, user interfacing, and timekeeping system.
+ It also keeps track of input, and dispalys the UI in whatever state it currently is in.
+ That is all. This section is meant to stay as minimal as possible. All functinality is to be encapsulated within objects.
+ */
+
 //android API context
 import android.content.Context;
 
