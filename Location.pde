@@ -18,6 +18,7 @@ class Mapper implements LocationListener {
 
   //on new data reception, update gps data
   public void onLocationChanged(Location location) {
+    //super rough estimate: 0.009 degrees = 1 km
     latitude  = (float)location.getLatitude();
     longitude = (float)location.getLongitude();
   }

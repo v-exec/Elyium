@@ -52,6 +52,9 @@ class Interface {
   //state of UI (1 = idle 2 = narrative 3 = menu)
   int state;
 
+  //current entity
+  Entity ent;
+
   //toggles for menu and data loading
   boolean menuToggle;
   boolean inMenu = false;
@@ -61,6 +64,7 @@ class Interface {
   Interface() {
     fill(255);
     noStroke();
+    ent = narrator.entities[0];
   }
 
   //displays respective UI mode
@@ -75,7 +79,7 @@ class Interface {
       break;
 
     case 2:
-      narrative(narrator.monument);
+      narrative(ent);
       break;
 
     case 3:
@@ -112,13 +116,13 @@ class Interface {
     source = object.cover;
 
     //render once
-    if (rendered == false) {
+    if (!rendered) {
       background(0);
       displayImage(object.animate);
     }
 
     //if image is not to be animated, refresh the rest of the screen
-    if (object.animate == false) {
+    if (!object.animate) {
       fill(0);
       rect(0, height/3, width, (height - height/3));
       rendered = true;
@@ -126,7 +130,7 @@ class Interface {
     }
 
     //begin narrative
-    if (inNarrative == false) {
+    if (!inNarrative) {
       beginNarrative(object);
       refresh = false;
       inNarrative = true;
@@ -240,7 +244,7 @@ class Interface {
         int loc = x + (y * source.width);
 
         int brightness = int(brightness(source.pixels[loc]));
-        if (animate == false) {
+        if (!animate) {
           if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + (width/2 - 250), y + height/20);
         } else {
           if (int(random(0, 1000)) > 1) {

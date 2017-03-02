@@ -18,7 +18,7 @@ class Timer {
   public void wait(int time) {
     currentTime = millis();
 
-    if (isTiming == false) {
+    if (!isTiming) {
       recordTime = currentTime + time;
       done = false;
       isTiming = true;
@@ -28,7 +28,7 @@ class Timer {
   public boolean timed() {
     currentTime = millis();
 
-    if (isTiming == true) {
+    if (isTiming) {
       if (recordTime < currentTime) {
         isTiming = false;
         done = true;

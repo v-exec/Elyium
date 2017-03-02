@@ -1,4 +1,4 @@
-[{
+{
 	"name": "monument",
 	"cover": "monument.png",
 	"animate": false,
@@ -54,4 +54,4 @@
 			"res": "R1"
 		}]
 	}]
-}]
+}

@@ -14,8 +14,8 @@ class Entity {
   String context;
 
   //location in real-world coordinates
-  float latitude;
-  float longitude;
+  float latitude = 0.001;
+  float longitude = 0.001;
 
   //cover image for entity
   PImage cover;
@@ -30,9 +30,6 @@ class Entity {
     this.cover = loadImage(dir.getString("cover"));
     this.animate = dir.getBoolean("animate");
     this.context = dir.getString("context");
-
-    this.latitude = dir.getFloat("latitude");
-    this.longitude = dir.getFloat("longitude");
 
     //get conflicts
     conflicts = new Conflict[dir.getJSONArray("conflicts").size()];

@@ -14,8 +14,6 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 - Bring together entity map and narrative systems.
 
-- Create conditional conflict handling.
-
 - Add conflict reset feature.
 
 #### Interfacing
@@ -35,7 +33,5 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 - Verify phone compatabilities.
 
 #### Content
-
-- Create database management tool that makes creating entities, conflicts, choices, resolutions, and conditions more intuitive.
 
 - Make more narrative content (and images?), create main and side 'quests'.

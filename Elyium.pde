@@ -21,7 +21,7 @@ import android.Manifest;
 Mapper mapper;
 
 //narrative database
-JSONObject data;
+JSONArray data;
 
 //narrative generator and manager
 Narrator narrator;
@@ -43,7 +43,7 @@ void setup() {
   fullScreen();
   background(0);
 
-  data = loadJSONObject("narrative.json");
+  data = loadJSONArray("narrative.json");
   narrator = new Narrator();
 
   UI = new Interface();
@@ -61,7 +61,7 @@ void draw() {
   }
 
   //reset mouse press to avoid unwanted double-clicks
-  if (mousePressed == false) {
+  if (!mousePressed) {
     input = false;
     ready = true;
   }
