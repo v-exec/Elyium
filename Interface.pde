@@ -53,18 +53,18 @@ class Interface {
   int state;
 
   //current entity
-  Entity ent;
+  Entity entity;
 
   //toggles for menu and data loading
-  boolean menuToggle;
-  boolean inMenu = false;
+  boolean menuToggle = false;
   boolean refresh = true;
+  boolean startNarrative = true;
   boolean inNarrative = false;
 
   Interface() {
     fill(255);
     noStroke();
-    ent = narrator.entities[0];
+    entity = narrator.entities[0];
   }
 
   //displays respective UI mode
@@ -79,7 +79,7 @@ class Interface {
       break;
 
     case 2:
-      narrative(ent);
+      narrative(entity);
       break;
 
     case 3:
@@ -99,9 +99,7 @@ class Interface {
 
   //idle mode
   private void idle() {
-    inMenu = false;
     rendered = false;
-    inNarrative = false;
     background(0);
     source = loadImage("idle.png");
 
@@ -110,8 +108,6 @@ class Interface {
 
   //narrative mode
   private void narrative(Entity object) {
-    inMenu = false;
-
     //get ascii image
     source = object.cover;
 
@@ -129,16 +125,20 @@ class Interface {
       fill(255);
     }
 
-    //begin narrative
+    //begin narrative (update text and choices list)
     if (!inNarrative) {
-      beginNarrative(object);
+      text = narrator.getNarrative(object);
+      for (int i = 0; i < choices.length; i++) choices[i] = narrator.getChoice(i);
+
       refresh = false;
       inNarrative = true;
     }
 
-    //continue narrative after player has provided choice (input)
+    //continue narrative after player has provided choice (input) (update text and choices list)
     if (refresh) {
-      updateNarrative();
+      text = narrator.continueNarrative();
+      for (int i = 0; i < choices.length; i++) choices[i] = narrator.getChoice(i);
+
       refresh = false;
     }
 
@@ -151,50 +151,41 @@ class Interface {
 
   //menu mode
   private void menu() {
-    inMenu = true;
     displayCoords();
     rendered = false;
   }
 
-  ////////////////////////////////////////////////////NARRATIVE GENERATION
-
-  //begins narrative sequence
-  private void beginNarrative(Entity object) {
-    text = narrator.getNarrative(object);
-    updateChoices();
-  }
-
-  //updates the current narrative
-  private void updateNarrative() {
-    text = narrator.continueNarrative();
-    updateChoices();
-  }
-
-  //updates the current set of choices
-  private void updateChoices() {
-    for (int i = 0; i < choices.length; i++) choices[i] = narrator.getChoice(i);
-  }
-
   ////////////////////////////////////////////////////CONTROLS
 
-  //handles all user input
+  //handles all user input and controls current state
   private void control() {
     if (input) {
+      //menu toggle
       if (mouseX >= width-150 && mouseX <= width && mouseY >= height-150 && mouseY <= height) menuToggle = !menuToggle;
 
-      for (int i = 0; i < choices.length; i++) {
-        if (choices[i] != "null") {
-          if (mouseX >= width/10 && mouseX <= width - width/10 && mouseY >= (height/3 * 2) + (i * choiceSpacing) && mouseY <= (height/3 * 2) + choiceSpacing + i * choiceSpacing) {
-            narrator.choose(i);
-            refresh = true;
+      //choice selection
+      if (choices[0] != "null") {
+        for (int i = 0; i < choices.length; i++) {
+          if (choices[i] != "null") {
+            if (mouseX >= width/10 && mouseX <= width - width/10 && mouseY >= (height/3 * 2) + (i * choiceSpacing) && mouseY <= (height/3 * 2) + choiceSpacing + i * choiceSpacing) {
+              narrator.choose(i);
+              refresh = true;
+            }
           }
         }
       }
     }
 
+    //turn off narrative mode after set amount of time, if resolved
+    if (choices[0] == "null" && inNarrative && timer.timed()) inNarrative = false;
+
+    //set state
     if (menuToggle) state = 3;
-    else if (timer.timed()) state = 1;
-    else state = 2;
+    else if (inNarrative || startNarrative) {
+      state = 2;
+      startNarrative = false; 
+    }
+    else state = 1;
   }
 
   ////////////////////////////////////////////////////DISPLAY
@@ -284,7 +275,7 @@ class Interface {
     textAlign(CENTER);
     textSize(12);
 
-    if (inMenu) menuIcon = loadImage("menuOn.png");
+    if (menuToggle) menuIcon = loadImage("menuOn.png");
     else menuIcon = loadImage("menuOff.png");
     menuIcon.loadPixels();
 

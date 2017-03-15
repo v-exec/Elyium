@@ -2,7 +2,7 @@
 	"name": "monument",
 	"cover": "monument.png",
 	"animate": false,
-	"context": "Before you stands an odd megastructure approximately 40 meters in height, and 5x5 meters in width and length. It's shaped like a thin pyramid, with various degraded inscriptions along each of its corners, and appears to be a religious monument of some sort due to its complex ornamentation.",
+	"context": "Before you stands an odd monument-like megastructure approximately 40 meters in height, and 5x5 meters in width and length. It's shaped like a thin pyramid, with various degraded inscriptions along each of its corners, and appears to be a religious monument of some sort due to its complex ornamentation.",
 
 	"conflicts": [{
 		"name": "K0",

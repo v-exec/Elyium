@@ -1,6 +1,6 @@
 # Elyium
 
-_Elyium_ is a *work in progress* alternate reality game, and a platform for narrative experiences.
+_Elyium_ is an alternate reality game, and a platform for narrative experiences and storytelling.
 
 [More information on this project can be found here.](http://v-os.ca/elyium)
 
