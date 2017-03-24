@@ -1,10 +1,7 @@
 /*
 LOCATION
  
- This section takes care of getting the player position, as well as assigning entities' locations, and then triggering a narrative sequence when an entity is encountered for the first time.
- /TODO/
- The system for spawning entities is not currently developed. Currently, it is simply keeping track of the player's real-world location.
- /TODO/
+ This section takes care of getting the player position, and provides this information to other units when necessary.
  */
 
 //location listener and map provider
@@ -23,14 +20,14 @@ class Mapper implements LocationListener {
     longitude = (float)location.getLongitude();
   }
 
-  //must implement abstract methods from LocationListener
+  //had to implement abstract methods from LocationListener
   public void onProviderDisabled (String provider) {
-    //clear
+    //
   }
   public void onProviderEnabled (String provider) {
-    //clear
+    //
   }
   public void onStatusChanged (String provider, int status, Bundle extras) {
-    //clear
+    //
   }
 }

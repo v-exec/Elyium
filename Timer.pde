@@ -3,7 +3,7 @@ TIMER
  
  This section acts as a standalone module that simply allows to time events.
  Currently, it is being used to trigger the idle mode (see Interface.pde) after a narrative conflict has been resolved.
- It will also likely be used in the entity spawning system (see Location.pde) to calculate player's physical speed (distance / time) to determine spawning.
+ It is also used in the entity spawning system (see Location.pde) to create a time interval between entity spawns to avoid uniformly distributed entity spawning.
  */
 
 class Timer {
@@ -15,17 +15,17 @@ class Timer {
     //
   }
 
-  //sets the timer to wait for 'time' milliseconds
+  //sets the timer to wait for 'time' seconds
   public void wait(int time) {
     currentTime = millis();
 
     if (!isTiming) {
-      recordTime = currentTime + time;
+      recordTime = currentTime + (time * 1000);
       isTiming = true;
     }
   }
 
-  //when the timer has waited wait()'s milliseconds, timed() returns true
+  //when the timer has waited wait()'s time, timed() returns true
   public boolean timed() {
     currentTime = millis();
     boolean timed = false;
@@ -33,7 +33,8 @@ class Timer {
     if (isTiming && recordTime < currentTime) {
       isTiming = false;
       timed = true;
-    } else timed = false;
+    }
+
     return timed;
   }
 }

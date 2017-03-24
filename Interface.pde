@@ -2,6 +2,7 @@
 INTERFACE
  
  This section handles all interfacing, user input management, and user interface status.
+ It acts as the primary management unit of all other systems, its hub-like status making it the main communication channel among the different units.
  
  The inteface contains 3 distinc 'modes' or 'states'.
  These 3 states act as management tools / triggers for particular data flow. In other words, many actions related to narrative and location functionalities are dependant on the UI state.
@@ -58,13 +59,12 @@ class Interface {
   //toggles for menu and data loading
   boolean menuToggle = false;
   boolean refresh = true;
-  boolean startNarrative = true;
+  boolean startNarrative = false;
   boolean inNarrative = false;
 
   Interface() {
     fill(255);
     noStroke();
-    entity = narrator.entities[0];
   }
 
   //displays respective UI mode
@@ -102,6 +102,9 @@ class Interface {
     rendered = false;
     background(0);
     source = loadImage("idle.png");
+
+    timer.wait(10);
+    if (narrator.search()) startNarrative = true;
 
     displayIdle();
   }
@@ -183,9 +186,8 @@ class Interface {
     if (menuToggle) state = 3;
     else if (inNarrative || startNarrative) {
       state = 2;
-      startNarrative = false; 
-    }
-    else state = 1;
+      startNarrative = false;
+    } else state = 1;
   }
 
   ////////////////////////////////////////////////////DISPLAY

@@ -14,8 +14,8 @@ class Entity {
   String context;
 
   //location in real-world coordinates
-  float latitude = 0.001;
-  float longitude = 0.001;
+  float latitude = 444.001;
+  float longitude = 444.001;
 
   //cover image for entity
   PImage cover;

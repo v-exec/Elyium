@@ -10,10 +10,6 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 #### Narrative
 
-- Create map grid and algorithm to determine when to allocate entity location.
-
-- Bring together entity map and narrative systems.
-
 - Add conflict reset feature.
 
 #### Interfacing
@@ -21,8 +17,6 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 - Add entity locations in menu screen.
 
 - Add interaction options for when the user is near entities, in menu.
-
-- Create startup and transition animations.
 
 - Add entity location change option for fixing undesireable entity spawns.
 
@@ -34,4 +28,10 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 #### Content
 
-- Make more narrative content (and images?), create main and side 'quests'.
+- Make more narrative content and images, create main and side 'quests'.
+
+#### Considerations
+
+- Modify entity spawning system to only spawn entities if player is moving under certain speed. This keeps players from exploring Elyium when in moving vehicle.
+
+- Create persistent entity locations for city-specific adventures and community-building.

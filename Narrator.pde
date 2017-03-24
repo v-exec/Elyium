@@ -5,11 +5,12 @@ NARRATOR
  The narrator also handles the providing of narrative data to the interface (see Interface.pde) by navigating the narrative data structures (entities).
  It also makes sure that conflicts with conditions have met those conditions (see Content.pde) before being presented in a narrative sequence.
  
- /TODO/
+ Additionally, this section handles determining whether an entity spawn is appropriate, and providing entities with location data once they've been encountered.
  The narrator keeps track of all encountered entities.
- After each narrative sequence is resolved, the unique resolution reached by the player is saved to the conflict, which is then written onto the JSON database.
- This acts as the saving system. It is also used for conditional conflicts, when a conflict must see if another conflict has been resolved in a specific way.
  /TODO/
+ After each narrative sequence is resolved, the unique resolution reached by the player is saved to the conflict, which is then written onto the JSON database.
+ /TODO/
+ This acts as the saving system. It is also used for conditional conflicts, when a conflict must see if another conflict has been resolved in a specific way.
  */
 
 class Narrator {
@@ -17,7 +18,7 @@ class Narrator {
   Entity[] entities = new Entity[data.size()];
 
   //value used to determine which entities in entities[] have been encountered. starts at entities.length and -= 1 every time a new entity is encountered
-  int entityTick = entities.length;
+  int entityTick = entities.length - 1;
 
   //narrative data location tracker and info retrieval (current = current master conflict. sub = subconflict within master. cho = final choice taken for master conflict / resolution choice)
   Conflict current;
@@ -56,7 +57,7 @@ class Narrator {
     if (resolved) {
       text = cho.res;
       current.res = cho.name;
-      timer.wait(10000);
+      timer.wait(10);
     } else text = sub.def;
     return text;
   }
@@ -79,6 +80,19 @@ class Narrator {
       cho = sub.choices[choice];
       resolved = true;
     }
+  }
+
+  //'searches' for entities to spawn
+  public boolean search() {
+    if (entityTick < 0) return false;
+
+    //check if player is sufficiently far from other entities and has waited long enough to spawn new entity
+    for (int i = entityTick; i < entities.length; i++) {
+      if (dist(mapper.latitude, mapper.longitude, entities[i].latitude, entities[i].longitude) < 0.005 || timer.timed() == false) return false;
+    }
+
+    encounter();
+    return true;
   }
 
   //checks whether or not the conditions for a conflict have been met
@@ -105,5 +119,17 @@ class Narrator {
       }
       return true;
     }
+  }
+
+  //picks a random unencountered entity and 'encounters' them, putting them beyond entityTick in entites[]
+  private void encounter() {
+    int entityIndex = round(random(0, entityTick));
+    UI.entity = entities[entityIndex];
+    entities[entityIndex].assignLocation(mapper.latitude, mapper.longitude);
+
+    Entity temp = entities[entityIndex];
+    entities[entityIndex] = entities[entityTick];
+    entities[entityTick] = temp;
+    entityTick--;
   }
 }
