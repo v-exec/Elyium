@@ -91,8 +91,10 @@ class Interface {
       break;
     }
 
-    //display menu at all times
-    displayMenu();
+    //display menu icon at all times
+    if (menuToggle) menuIcon = loadImage("menuOn.png");
+    else menuIcon = loadImage("menuOff.png");
+    ASCII(width - 100, height - 100, menuIcon, true);
   }
 
   ////////////////////////////////////////////////////MODES
@@ -106,7 +108,7 @@ class Interface {
     timer.wait(10);
     if (narrator.search()) startNarrative = true;
 
-    displayIdle();
+    ASCII(width/2 - 250, height/2 - 250, source, true);
   }
 
   //narrative mode
@@ -117,7 +119,7 @@ class Interface {
     //render once
     if (!rendered) {
       background(0);
-      displayImage(object.animate);
+      ASCII(width/2 - 250, height/20, source, object.animate);
     }
 
     //if image is not to be animated, refresh the rest of the screen
@@ -146,15 +148,29 @@ class Interface {
     }
 
     //display narrative
-    displayNarrative();
+    rectMode(CORNER);
+    textAlign(LEFT);
+    textSize(24);
+    text(text, width/10, height/3, width - (width/10 * 2), height - height/4);
 
     //display choices
-    displayChoices();
+    for (int i = 0; i < choices.length; i++) {
+      if (choices[i] != "null") {
+        ASCII(width/10, (height/3 * 2) + (i * choiceSpacing), choiceIcon, true);
+
+        rectMode(CORNER);
+        textAlign(LEFT);
+        textSize(24);
+
+        text(choices[i], width/8, (height/3 * 2) + (i * choiceSpacing), width - (width/10 * 2), 50);
+      }
+    }
   }
 
   //menu mode
   private void menu() {
     displayCoords();
+    displayEntities();
     rendered = false;
   }
 
@@ -192,105 +208,27 @@ class Interface {
 
   ////////////////////////////////////////////////////DISPLAY
 
-  private void displayIdle() {
+  //draws ASCII-fied version of images. used for menu icon, choice icons, idle image, and entity images
+  private void ASCII(int xStart, int yStart, PImage image, boolean animate) {
     textAlign(CENTER);
     textSize(12);
+    image.loadPixels();
 
-    source.loadPixels();
-
-    for (int x = 0; x < source.width; x += imageDensity) {
-      for (int y = 0; y < source.height; y += imageDensity) {
-        int loc = x + (y * source.width);
-
-        int brightness = int(brightness(source.pixels[loc]));
-        if (int(random(0, 1000)) > 1) {
-          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + (width/2 - 250), y + (height/2 - 250));
-        }
-      }
-    }
-  }
-
-  //displays narrative text of a conflict
-  private void displayNarrative() {
-    rectMode(CORNER);
-    textAlign(LEFT);
-    textSize(24);
-    text(text, width/10, height/3, width - (width/10 * 2), height - height/4);
-  }
-
-  //displays all of the choices in a conflict
-  private void displayChoices() {
-    for (int i = 0; i < choices.length; i++) {
-      if (choices[i] != "null") displayChoice(i, choices[i]);
-    }
-  }
-
-  //displays entity image
-  private void displayImage(boolean animate) {
-    textAlign(CENTER);
-    textSize(12);
-
-    source.loadPixels();
-
-    for (int x = 0; x < source.width; x += imageDensity) {
-      for (int y = 0; y < source.height; y += imageDensity) {
-        int loc = x + (y * source.width);
-
-        int brightness = int(brightness(source.pixels[loc]));
-        if (!animate) {
-          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + (width/2 - 250), y + height/20);
-        } else {
+    for (int x = 0; x < image.width; x += imageDensity) {
+      for (int y = 0; y < image.height; y += imageDensity) {
+        int loc = x + (y * image.width);
+        int brightness = int(brightness(image.pixels[loc]));
+        if (animate) {
           if (int(random(0, 1000)) > 1) {
-            if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + (width/2 - 250), y + height/20);
+            if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + xStart, y + yStart);
           }
-        }
+        } else if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + xStart, y + yStart);
       }
     }
   }
 
-  //displays a single choice in its respective location, along with its small UI line next to it
-  private void displayChoice(int num, String string) {
-    textAlign(CENTER);
-    textSize(12);
-
-    choiceIcon.loadPixels();
-
-    for (int x = 0; x <= choiceIcon.width; x += imageDensity) {
-      for (int y = 0; y <= choiceIcon.height; y += imageDensity) {
-        int loc = constrain(x + (y * choiceIcon.width), 0, choiceIcon.pixels.length-1);
-
-        int brightness = int(brightness(choiceIcon.pixels[loc]));
-        if (int(random(0, 1000)) > 1) {
-          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width/10, y + (height/3 * 2) + (num * choiceSpacing));
-        }
-      }
-    }
-    rectMode(CORNER);
-    textAlign(LEFT);
-    textSize(24);
-
-    text(string, width/8, (height/3 * 2) + (num * choiceSpacing), width - (width/10 * 2), 50);
-  }
-
-  //displays small menu icon on bottom right corner of screen. updates it accordingly (based on user input)
-  private void displayMenu() {
-    textAlign(CENTER);
-    textSize(12);
-
-    if (menuToggle) menuIcon = loadImage("menuOn.png");
-    else menuIcon = loadImage("menuOff.png");
-    menuIcon.loadPixels();
-
-    for (int x = 0; x <= menuIcon.width; x += imageDensity) {
-      for (int y = 0; y <= menuIcon.height; y += imageDensity) {
-        int loc = constrain(x + (y * menuIcon.width), 0, menuIcon.pixels.length-1);
-
-        int brightness = int(brightness(menuIcon.pixels[loc]));
-        if (int(random(0, 1000)) > 1) {
-          if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + width - 100, y + height - 100);
-        }
-      }
-    }
+  private void displayEntities() {
+    //
   }
 
   //draws real-world player coordinates
@@ -300,8 +238,8 @@ class Interface {
     textSize(24);
 
     if (mapper.hasLocation) {
-      text("Lat: " + mapper.latitude, width/2, height/10);
-      text("Lon: " + mapper.longitude, width/2, height/10 + 40);
+      text(mapper.latitude, 100, 100);
+      text(mapper.longitude, 100, 100 + 40);
     } else text("No permissions to access location", width/2, height/10);
   }
 }

@@ -6,7 +6,7 @@ CONTENT
  Each choice contains either another conflict (continuing the chain), or a resolution (ending the chain).
  The conflict and choice objects act as containers for the narrative data that is fetched from the JSON database.
  
- Conflicts with condition(s) can only be presented once the condition(s) have been met.
+ Conflicts with condition(s) can only be presented once the condition(s) have been met, if any.
  Conditions are data structures that contain a 'map' (entity.conflict.resolution) pointing to the conflict whose acquired resolution must be checked.
  
  Despite master conflicts being different from subconflicts, and final choices being different from other choices, all conflicts and all choices are the same class.
@@ -14,7 +14,7 @@ CONTENT
  Also, the JSON file and the data structures in Elyium are *not* identical. The JSON file acts only as a static source for narrative content, all additional dynamics are handled at runtime in this alternate data system. 
  
  The purpose is to avoid constantly referring to the JSON file, but instead create a data structure that represents the JSON data in memory.
- This way, all the data is loaded on start, including any player progress saved within the database.
+ This way, all the content is loaded from the database on start and never referred to again.
  */
 
 //conflict class, holds conflict data and set of choices

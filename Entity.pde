@@ -3,7 +3,7 @@ ENTITY
  
  This section handles the entities in the system.
  Entities act as the main containers for the narrative data. Within them are conflicts, within which there are choices (see Content.pde for information about this object chain).
- Aside from conflicts and narrative data, an entity also contains a real-world coordinate that is assigned to it when the location system decides it should appear to the player (see Location.pde).
+ Aside from conflicts and narrative data, an entity also contains a real-world coordinate that is assigned to it when the narrative system decides it should appear to the player (see Narrator.pde).
  */
 
 class Entity {
