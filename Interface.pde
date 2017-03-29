@@ -44,6 +44,7 @@ class Interface {
   //UI elements
   PImage menuIcon;
   PImage choiceIcon = loadImage("choice.png");
+  PImage entityIcon = loadImage("entity.png");
 
   //text elements and formatting
   String text;
@@ -105,7 +106,7 @@ class Interface {
     background(0);
     source = loadImage("idle.png");
 
-    timer.wait(10);
+    spawn.wait(10);
     if (narrator.search()) startNarrative = true;
 
     ASCII(width/2 - 250, height/2 - 250, source, true);
@@ -169,12 +170,37 @@ class Interface {
 
   //menu mode
   private void menu() {
-    displayCoords();
-    displayEntities();
+    //display coordinates
+    background(0);
+    textAlign(CENTER);
+    textSize(24);
+
+    if (mapper.hasLocation) {
+      text(mapper.latitude, 100, 100);
+      text(mapper.longitude, 100, 100 + 40);
+    } else text("No permissions to access location", width/2, height/10);
+
+    //display encountered entities list
+    for (int i = narrator.entityTick + 1; i < narrator.entities.length; i+=3) {
+      for (int j = 0; j < 3; j++) {
+        if (i + j < narrator.entities.length) {
+          ASCII(width/10 + ((width - width/5)/3 * j + 1), width/5 + width/10 * i, entityIcon, true);
+
+          rectMode(CORNER);
+          textAlign(LEFT);
+          textSize(24);
+
+          text(narrator.entities[i+j].name, width/10 + ((width - width/5)/3 * j + 1), width/5 + width/10 * i + 40);
+          text(trim(str(narrator.entities[i+j].latitude)), width/10 + ((width - width/5)/3 * j + 1), width/5 + width/10 * i + 80);
+          text(trim(str(narrator.entities[i+j].longitude)), width/10 + ((width - width/5)/3 * j + 1), width/5 + width/10 * i + 120);
+        }
+      }
+    }
+
     rendered = false;
   }
 
-  ////////////////////////////////////////////////////CONTROLS
+  ////////////////////////////////////////////////////CONTROLS & RENDERING
 
   //handles all user input and controls current state
   private void control() {
@@ -186,7 +212,7 @@ class Interface {
       if (choices[0] != "null") {
         for (int i = 0; i < choices.length; i++) {
           if (choices[i] != "null") {
-            if (mouseX >= width/10 && mouseX <= width - width/10 && mouseY >= (height/3 * 2) + (i * choiceSpacing) && mouseY <= (height/3 * 2) + choiceSpacing + i * choiceSpacing) {
+            if (mouseX >= width/10 && mouseX <= width - width/10 && mouseY >= (height/3 * 2) + (i * choiceSpacing) - choiceSpacing / 4 && mouseY <= (height/3 * 2) + choiceSpacing + (i * choiceSpacing) + (choiceSpacing / 4)) {
               narrator.choose(i);
               refresh = true;
             }
@@ -200,13 +226,11 @@ class Interface {
 
     //set state
     if (menuToggle) state = 3;
-    else if (inNarrative || startNarrative) {
+    else if (startNarrative || inNarrative) {
       state = 2;
       startNarrative = false;
     } else state = 1;
   }
-
-  ////////////////////////////////////////////////////DISPLAY
 
   //draws ASCII-fied version of images. used for menu icon, choice icons, idle image, and entity images
   private void ASCII(int xStart, int yStart, PImage image, boolean animate) {
@@ -225,21 +249,5 @@ class Interface {
         } else if (brightness > brightnessThresh) text(chars[int(map(brightness, brightnessThresh, 255, 0, chars.length - 1))], x + xStart, y + yStart);
       }
     }
-  }
-
-  private void displayEntities() {
-    //
-  }
-
-  //draws real-world player coordinates
-  private void displayCoords() {
-    background(0);
-    textAlign(CENTER);
-    textSize(24);
-
-    if (mapper.hasLocation) {
-      text(mapper.latitude, 100, 100);
-      text(mapper.longitude, 100, 100 + 40);
-    } else text("No permissions to access location", width/2, height/10);
   }
 }

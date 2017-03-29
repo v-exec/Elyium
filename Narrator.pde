@@ -87,11 +87,20 @@ class Narrator {
     if (entityTick < 0) return false;
 
     //check if player is sufficiently far from other entities and has waited long enough to spawn new entity
-    for (int i = entityTick; i < entities.length; i++) {
-      if (dist(mapper.latitude, mapper.longitude, entities[i].latitude, entities[i].longitude) < 0.005 || timer.timed() == false) return false;
+    for (int i = entityTick + 1; i < entities.length; i++) {
+      if (dist(mapper.latitude, mapper.longitude, entities[i].latitude, entities[i].longitude) < 0.005 || spawn.timed() == false) return false;
     }
 
-    encounter();
+    //picks a random unencountered entity and 'encounters' them, putting them beyond entityTick in entites[]
+    int entityIndex = round(random(0, entityTick));
+    UI.entity = entities[entityIndex];
+    entities[entityIndex].assignLocation(mapper.latitude, mapper.longitude);
+
+    Entity temp = entities[entityIndex];
+    entities[entityIndex] = entities[entityTick];
+    entities[entityTick] = temp;
+    entityTick--;
+
     return true;
   }
 
@@ -119,17 +128,5 @@ class Narrator {
       }
       return true;
     }
-  }
-
-  //picks a random unencountered entity and 'encounters' them, putting them beyond entityTick in entites[]
-  private void encounter() {
-    int entityIndex = round(random(0, entityTick));
-    UI.entity = entities[entityIndex];
-    entities[entityIndex].assignLocation(mapper.latitude, mapper.longitude);
-
-    Entity temp = entities[entityIndex];
-    entities[entityIndex] = entities[entityTick];
-    entities[entityTick] = temp;
-    entityTick--;
   }
 }

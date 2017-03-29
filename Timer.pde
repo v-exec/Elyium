@@ -10,7 +10,7 @@ class Timer {
   int currentTime = 0;
   int recordTime = 0;
   boolean isTiming = false;
-
+  
   Timer() {
     //
   }
@@ -28,13 +28,12 @@ class Timer {
   //when the timer has waited wait()'s time, timed() returns true
   public boolean timed() {
     currentTime = millis();
-    boolean timed = false;
 
     if (isTiming && recordTime < currentTime) {
       isTiming = false;
-      timed = true;
+      return true;
     }
 
-    return timed;
+    return false;
   }
 }

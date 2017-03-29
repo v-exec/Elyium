@@ -39,6 +39,9 @@ boolean input = false;
 //general use timer
 Timer timer = new Timer();
 
+//entity spawn timer
+Timer spawn = new Timer();
+
 void setup() {
   fullScreen();
   background(0);

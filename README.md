@@ -14,8 +14,6 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 #### Interfacing
 
-- Add entity locations in menu screen.
-
 - Add interaction options for when the user is near entities, in menu.
 
 #### Foundation
