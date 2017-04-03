@@ -26,11 +26,11 @@
 			"con": {
 				"def": "The extrusion slides further out and revelas a semi-decomposed alien corpse. Its fingers are curled around some sort of scroll.",
 				"choices": [{
-					"name": "R0",
+					"name": "R2",
 					"def": "Grab the scroll.",
 					"res": "You grab the scroll from the creature's hands. It revelas a mythical telling of an epic battle that occured near this site. Most of the writing has unfortunately washed away, but you can make out a few key words that describe the incident as a major event that would bring peace for thousands of years."
 				}, {
-					"name": "R1",
+					"name": "R3",
 					"def": "Push the coffin back into the monument.",
 					"res": "The coffin fits back into the monument. A silent, low-pitched hum spreads through the air. Everything is calm."
 				}]

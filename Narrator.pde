@@ -52,23 +52,27 @@ class Narrator {
     return text;
   }
 
-  //continues narrative, or displays the conflict resolution and notes it in the master conflict
+  //continues narrative, or displays the conflict resolution and notes it in the master conflict if resolved, or resets conflict if string starts with 'RESET-'
   public String continueNarrative() {
     if (resolved) {
-      text = cho.res;
-      current.res = cho.name;
-      timer.wait(10);
+      if (cho.res.substring(0, 6).equals("RESET-")) {
+        text = cho.res.substring(6);
+        sub = current;
+        resolved = false;
+      } else {
+        text = cho.res;
+        current.res = cho.name;
+        timer.wait(10);
+      }
     } else text = sub.def;
     return text;
   }
 
   //gets the choices for the currently inhabited conflict
   public String getChoice(int choice) {
-    if (!resolved) {
-      if (sub.choices.length > choice) {
-        text = sub.choices[choice].def;
-        return text;
-      } else return "null";
+    if (!resolved && sub.choices.length > choice) {
+      text = sub.choices[choice].def;
+      return text;
     } else return "null";
   }
 

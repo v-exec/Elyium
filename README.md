@@ -8,10 +8,6 @@ _Elyium_ is an alternate reality game, and a platform for narrative experiences 
 
 A breakdown of the remaining tasks (in their respective systems) to be completed for the production of this project, in (more or less) chronological order.
 
-#### Narrative
-
-- Add conflict reset feature.
-
 #### Interfacing
 
 - Add interaction options for when the user is near entities, in menu.

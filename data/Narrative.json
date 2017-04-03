@@ -2,7 +2,7 @@
 	"name": "monument",
 	"cover": "monument.png",
 	"animate": false,
-	"context": "Before you stands an odd monument-like megastructure approximately 40 meters in height, and 5x5 meters in width and length. It's shaped like a thin pyramid, with various degraded inscriptions along each of its corners, and appears to be a religious monument of some sort due to its complex ornamentation.",
+	"context": "Before you stands an odd megastructure approximately 40 meters in height, and 5x5 meters in width and length. It's shaped like a thin pyramid, with various degraded inscriptions along each of its corners, and appears to be a religious monument of some sort due to its complex ornamentation.",
 
 	"conflicts": [{
 		"name": "K0",
@@ -26,11 +26,11 @@
 			"con": {
 				"def": "The extrusion slides further out and revelas a semi-decomposed alien corpse. Its fingers are curled around some sort of scroll.",
 				"choices": [{
-					"name": "R0",
+					"name": "R2",
 					"def": "Grab the scroll.",
 					"res": "You grab the scroll from the creature's hands. It revelas a mythical telling of an epic battle that occured near this site. Most of the writing has unfortunately washed away, but you can make out a few key words that describe the incident as a major event that would bring peace for thousands of years."
 				}, {
-					"name": "R1",
+					"name": "R3",
 					"def": "Push the coffin back into the monument.",
 					"res": "The coffin fits back into the monument. A silent, low-pitched hum spreads through the air. Everything is calm."
 				}]
@@ -90,19 +90,19 @@
 			"con": {
 				"def": "J3oYBT50yc.",
 				"choices": [{
-					"name": "R0",
+					"name": "R4",
 					"def": "AiPyvMdReb.",
 					"res": "XCbxKNfpeh."
 				}, {
-					"name": "R1",
+					"name": "R5",
 					"def": "vgo8IuO82W.",
 					"res": "VKUQFf4krG."
 				}, {
-					"name": "R2",
+					"name": "R6",
 					"def": "JiAZ8Ec5Dr.",
 					"res": "WutHSUG3Vp."
 				}, {
-					"name": "R3",
+					"name": "R7",
 					"def": "zRPgehlMSx.",
 					"res": "68o8SG0IKb."
 				}]
@@ -119,6 +119,43 @@
 			"name": "R1",
 			"def": "RVPRgdQmsC.",
 			"res": "eR1zg2VKik."
+		}]
+	}]
+}, {
+	"name": "penrose array",
+	"cover": "penrose array.png",
+	"animate": false,
+	"context": "Penrose array. Test.",
+
+	"conflicts": [{
+		"name": "K0",
+		"def": "Conflict.",
+		"choices": [{
+			"def": "True.",
+			"con": {
+				"def": "True.",
+				"choices": [{
+					"name": "R0",
+					"def": "False.",
+					"res": "No reset."
+				}, {
+					"name": "R1",
+					"def": "True.",
+					"res": "RESET-successful reset."
+				}, {
+					"name": "R2",
+					"def": "False.",
+					"res": "No reset."
+				}, {
+					"name": "R3",
+					"def": "False.",
+					"res": "No reset."
+				}]
+			}
+		}, {
+			"name": "R4",
+			"def": "False.",
+			"res": "No reset."
 		}]
 	}]
 }]
