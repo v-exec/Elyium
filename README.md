@@ -14,9 +14,11 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 #### Technicality
 
-- Create load functionality that loads saved entity data on startup.
+- Test load functionality.
 
 - Verify phone compatabilities.
+
+- Add vibration feedback for UI presses, and entity encounters.
 
 #### Content
 

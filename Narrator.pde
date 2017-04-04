@@ -1,7 +1,7 @@
 /*
 NARRATOR
  
- This section takes care of initializing all entities, and beginning the data population process (see Entity.pde and Content.pde for the two other parts of the process) through the JSON database.
+ This section takes care of initializing all entities, and beginning the data population process (see Entity.pde for the other parts of the process) through the JSON database.
  The narrator also handles the providing of narrative data to the interface (see Interface.pde) by navigating the narrative data structures (entities).
  It also makes sure that conflicts with conditions have met those conditions (see Content.pde) before being presented in a narrative sequence.
  
@@ -136,6 +136,9 @@ class Narrator {
 
   //saves encountered entities, their coordinates, and their conflict resolutions
   private void saveGame() {
+    //clear entities before saving
+    for (int i = 0; i < save.size(); i++) save.remove(i);
+
     for (int i = 0; i <= entitiesTick; i++) {
       JSONObject se = new JSONObject();
       se.setString("name", entities[i].name);
