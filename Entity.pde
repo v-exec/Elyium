@@ -39,10 +39,4 @@ class Entity {
       conflicts[i] = new Conflict(con.getJSONObject(i));
     }
   }
-
-  //assigns location to entity once it's been encountered
-  public void assignLocation(float latitude, float longitude) {
-    this.latitude = latitude;
-    this.longitude = longitude;
-  }
 }

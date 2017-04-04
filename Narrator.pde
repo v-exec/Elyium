@@ -7,9 +7,7 @@ NARRATOR
  
  Additionally, this section handles determining whether an entity spawn is appropriate, and providing entities with location data once they've been encountered.
  The narrator keeps track of all encountered entities.
- /TODO/
  After each narrative sequence is resolved, the unique resolution reached by the player is saved to the conflict, which is then written onto the JSON database.
- /TODO/
  This acts as the saving system. It is also used for conditional conflicts, when a conflict must see if another conflict has been resolved in a specific way.
  */
 
@@ -52,7 +50,7 @@ class Narrator {
     return text;
   }
 
-  //continues narrative, or displays the conflict resolution and notes it in the master conflict if resolved, or resets conflict if string starts with 'RESET-'
+  //continues narrative, or displays the conflict resolution and notes it in the master conflict and saves if resolved, or resets conflict if string starts with 'RESET-'
   public String continueNarrative() {
     if (resolved) {
       if (cho.res.substring(0, 6).equals("RESET-")) {
@@ -62,6 +60,7 @@ class Narrator {
       } else {
         text = cho.res;
         current.res = cho.name;
+        saveGame();
         timer.wait(10);
       }
     } else text = sub.def;
@@ -98,7 +97,8 @@ class Narrator {
     //picks a random unencountered entity and 'encounters' them, putting them beyond entityTick in entites[]
     int entityIndex = round(random(0, entityTick));
     UI.entity = entities[entityIndex];
-    entities[entityIndex].assignLocation(mapper.latitude, mapper.longitude);
+    entities[entityIndex].latitude = mapper.latitude;
+    entities[entityIndex].longitude = mapper.longitude;
 
     Entity temp = entities[entityIndex];
     entities[entityIndex] = entities[entityTick];
@@ -132,5 +132,23 @@ class Narrator {
       }
       return true;
     }
+  }
+
+  //saves encountered entities, their coordinates, and their conflict resolutions
+  private void saveGame() {
+    for (int i = 0; i <= entitiesTick; i++) {
+      JSONObject se = new JSONObject();
+      se.setString("name", entities[i].name);
+      se.setFloat("latitude", entities[i].latitude);
+      se.setFloat("longitude", entities[i].longitude);
+
+      for (int j = 0; j < entities[i].conflicts.length; j++) {
+        if (entities[i].conflicts[j].res != null) {
+          se.setString(entities[i].conflicts[j].name, entities[i].conflicts[j].res);
+        }
+      }
+      save.setJSONObject(i, se);
+    }
+    saveJSONArray(save, "data/save.json");
   }
 }

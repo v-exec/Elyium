@@ -12,9 +12,9 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 - Add interaction options for when the user is near entities, in menu.
 
-#### Foundation
+#### Technicality
 
-- Create save functionality that triggers after every narrative sequence has been resolved.
+- Create load functionality that loads saved entity data on startup.
 
 - Verify phone compatabilities.
 

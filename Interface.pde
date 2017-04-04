@@ -19,8 +19,8 @@ INTERFACE
  If it is being animated, the entire frame is refreshed. Otherwise, all space under the image (where text, UI, and choices are displayed) is refreshed.
  
  Menu: The state in which the player can enter at any time (regardless of whether they're in the idle state or the narrative state).
- /TODO/
  The menu acts as a map tool that shows the player their current real-world coordinates, and the real-world coordinates of all entities they've encountered.
+  /TODO/
  On the first encounter with an entity, the player is forced into a narrative sequence. In subsequent encounters, however, the player must choose to interact with the entity through the menu.
  The idea is to avoid undesireable engagement in narrative sequences.
  The encountered entities in the menu are ordered by proximity to the player. Once close enough, they are highlighted to show that they can now be interacted with.

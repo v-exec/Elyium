@@ -23,6 +23,9 @@ Mapper mapper;
 //narrative database
 JSONArray data;
 
+//save file
+JSONArray save;
+
 //narrative generator and manager
 Narrator narrator;
 
@@ -48,6 +51,8 @@ void setup() {
 
   data = loadJSONArray("narrative.json");
   narrator = new Narrator();
+
+  save = new JSONArray();
 
   UI = new Interface();
   console = createFont("Menlo-Regular.ttf", 24, false);
