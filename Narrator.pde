@@ -34,7 +34,7 @@ class Narrator {
       entities[i] = new Entity(data.getJSONObject(i));
     }
 
-    for (int i = 0; i <= entityTick; i++) {
+    for (int i = entityTick; i > -1; i--) {
       if (entities[i].latitude != 444.001) {
         Entity temp = entities[i];
         entities[i] = entities[entityTick];
@@ -97,7 +97,7 @@ class Narrator {
 
   //'searches' for entities to spawn
   public boolean search() {
-    if (entityTick < -1) return false;
+    if (entityTick <= -1) return false;
 
     //check if player is sufficiently far from other entities to spawn new entity
     for (int i = entityTick + 1; i < entities.length; i++) {

@@ -20,11 +20,12 @@ class Mapper implements LocationListener {
     longitude = (float)location.getLongitude();
   }
 
-  //had to implement abstract methods from LocationListener
   public void onProviderDisabled (String provider) {
     latitude = 0;
     longitude = 0;
   }
+
+  //had to implement abstract methods from LocationListener
   public void onProviderEnabled (String provider) {
     //
   }

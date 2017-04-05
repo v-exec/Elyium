@@ -60,8 +60,8 @@ class Entity {
         this.longitude = save.getJSONObject(i).getFloat("longitude");
 
         for (int j = 0; j < conflicts.length; j++) {
-          if (save.getJSONObject(i).hasKey(conflicts[i].name)) {
-            conflicts[i].res = save.getJSONObject(i).getString(conflicts[i].name);
+          if (save.getJSONObject(i).hasKey(conflicts[j].name)) {
+            conflicts[i].res = save.getJSONObject(i).getString(conflicts[j].name);
           }
         }
       }

@@ -215,7 +215,7 @@ class Interface {
       if (choices[0] != "null" && choices[0] != null) {
         for (int i = 0; i < choices.length; i++) {
           if (choices[i] != "null") {
-            if (mouseX >= width/10 && mouseX <= width - width/10 && mouseY >= (height/3 * 2) + (i * choiceSpacing) - choiceSpacing / 4 && mouseY <= (height/3 * 2) + choiceSpacing + (i * choiceSpacing) + (choiceSpacing / 4)) {
+            if (mouseX >= width/10 && mouseX <= width - width/10 && mouseY >= (height/3 * 2) + (i * choiceSpacing) && mouseY <= (height/3 * 2) + choiceSpacing + (i * choiceSpacing)) {
               narrator.choose(i);
               refresh = true;
             }

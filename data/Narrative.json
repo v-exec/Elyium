@@ -145,7 +145,7 @@
 				}, {
 					"name": "R2",
 					"def": "False.",
-					"res": "RESET-No reset."
+					"res": "No reset."
 				}, {
 					"name": "R3",
 					"def": "False.",

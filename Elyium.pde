@@ -50,13 +50,13 @@ Timer timer = new Timer();
 Timer spawn = new Timer();
 
 void setup() {
-  fullScreen();
+  size(displayWidth, displayHeight);
   background(0);
 
   data = loadJSONArray("narrative.json");
   f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
   if (f.exists()) save = loadJSONArray(Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
-  else save = new JSONArray();
+  else save = loadJSONArray("save.json");
 
   narrator = new Narrator();
 

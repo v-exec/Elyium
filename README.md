@@ -16,11 +16,11 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 #### Technicality
 
-- Fix conflict reset input fields.
-
 - Verify phone compatabilities.
 
 - Add vibration feedback for UI presses and entity encounters.
+
+- Test conditional conflicts' new algorithm structure.
 
 #### Content
 
@@ -29,7 +29,5 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 #### Considerations
 
 - Modify entity spawning system to only spawn entities if player is moving under certain speed. This keeps players from exploring Elyium when in moving vehicle.
-
-- Create persistent entity locations for city-specific adventures and community-building (can already be done through save file).
 
 - Add entity location change option for fixing undesireable entity spawns.
