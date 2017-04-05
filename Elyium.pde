@@ -28,6 +28,7 @@ JSONArray data;
 
 //save/load file
 JSONArray save;
+File f;
 
 //narrative generator and manager
 Narrator narrator;
@@ -53,7 +54,10 @@ void setup() {
   background(0);
 
   data = loadJSONArray("narrative.json");
-  save = loadJSONArray("save.json");
+  f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
+  if (f.exists()) save = loadJSONArray(Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
+  else save = loadJSONArray("save.json");
+
   narrator = new Narrator();
 
   UI = new Interface();

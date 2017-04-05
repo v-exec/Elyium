@@ -16,13 +16,13 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 #### Technicality
 
-- Fix save functionality.
+- Fix save/load system.
 
 - Fix conflict reset input fields.
 
 - Verify phone compatabilities.
 
-- Add vibration feedback for UI presses, and entity encounters.
+- Add vibration feedback for UI presses and entity encounters.
 
 #### Content
 

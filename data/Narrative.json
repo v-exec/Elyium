@@ -141,11 +141,11 @@
 				}, {
 					"name": "R1",
 					"def": "True.",
-					"res": "RESET-successful reset."
+					"res": "RESET-Successful reset."
 				}, {
 					"name": "R2",
 					"def": "False.",
-					"res": "No reset."
+					"res": "RESET-No reset."
 				}, {
 					"name": "R3",
 					"def": "False.",
@@ -154,6 +154,10 @@
 			}
 		}, {
 			"name": "R4",
+			"def": "False.",
+			"res": "No reset."
+		}, {
+			"name": "R5",
 			"def": "False.",
 			"res": "No reset."
 		}]

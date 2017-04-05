@@ -34,7 +34,7 @@ class Narrator {
       entities[i] = new Entity(data.getJSONObject(i));
     }
 
-    for (int i = 0; i < entityTick; i++) {
+    for (int i = 0; i <= entityTick; i++) {
       if (entities[i].latitude != 444.001) {
         Entity temp = entities[i];
         entities[i] = entities[entityTick];
@@ -60,13 +60,13 @@ class Narrator {
     return text;
   }
 
-  //continues narrative, or displays the conflict resolution and notes it in the master conflict and saves if resolved, or resets conflict if string starts with 'RESET-'
+  //continues narrative, or displays the conflict resolution and notes it in the master conflict and saves if resolved, or resets conflict if resolution string starts with 'RESET-'
   public String continueNarrative() {
     if (resolved) {
       if (cho.res.substring(0, 6).equals("RESET-")) {
+        resolved = false;
         text = cho.res.substring(6);
         sub = current;
-        resolved = false;
       } else {
         text = cho.res;
         current.res = cho.name;
@@ -148,12 +148,12 @@ class Narrator {
     }
   }
 
-  //saves encountered entities, their coordinates, and their conflict resolutions
+  //saves encountered entities, their coordinates, and their conflict resolutions (saves to android /data folder, not typical processing sketch data folder)
   private void saveGame() {
     //clear entities before saving
-    for (int i = 0; i < save.size(); i++) save.remove(i);
+    save = new JSONArray();
 
-    for (int i = 0; i <= entityTick; i++) {
+    for (int i = entityTick + 1; i < entities.length; i++) {
       JSONObject se = new JSONObject();
       se.setString("name", entities[i].name);
       se.setFloat("latitude", entities[i].latitude);
@@ -166,6 +166,14 @@ class Narrator {
       }
       save.setJSONObject(i, se);
     }
+
+    //clear JSONArray of null objects that are randomly created for some apparent reason?!
+    for (int i = 0; i < save.size(); i++) {
+      if (save.get(i).equals(null)) save.remove(i);
+    }
+    
+    //DO NOT ASK ME WHY THIS WORKS
+    if (!f.exists()) save.remove(0);
     saveJSONArray(save, Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
   }
 }
