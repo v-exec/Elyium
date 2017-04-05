@@ -10,7 +10,7 @@ class Timer {
   int currentTime = 0;
   int recordTime = 0;
   boolean isTiming = false;
-  
+
   Timer() {
     //
   }

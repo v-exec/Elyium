@@ -20,7 +20,7 @@ INTERFACE
  
  Menu: The state in which the player can enter at any time (regardless of whether they're in the idle state or the narrative state).
  The menu acts as a map tool that shows the player their current real-world coordinates, and the real-world coordinates of all entities they've encountered.
-  /TODO/
+ /TODO/
  On the first encounter with an entity, the player is forced into a narrative sequence. In subsequent encounters, however, the player must choose to interact with the entity through the menu.
  The idea is to avoid undesireable engagement in narrative sequences.
  The encountered entities in the menu are ordered by proximity to the player. Once close enough, they are highlighted to show that they can now be interacted with.
@@ -181,22 +181,25 @@ class Interface {
     } else text("No permissions to access location", width/2, height/10);
 
     //display encountered entities list
-    for (int i = narrator.entityTick + 1; i < narrator.entities.length; i+=3) {
-      for (int j = 0; j < 3; j++) {
-        if (i + j < narrator.entities.length) {
-          ASCII(width/10 + ((width - width/5)/3 * j + 1), width/5 + width/10 * i, entityIcon, true);
-
-          rectMode(CORNER);
-          textAlign(LEFT);
-          textSize(24);
-
-          text(narrator.entities[i+j].name, width/10 + ((width - width/5)/3 * j + 1), width/5 + width/10 * i + 40);
-          text(trim(str(narrator.entities[i+j].latitude)), width/10 + ((width - width/5)/3 * j + 1), width/5 + width/10 * i + 80);
-          text(trim(str(narrator.entities[i+j].longitude)), width/10 + ((width - width/5)/3 * j + 1), width/5 + width/10 * i + 120);
-        }
+    int oi = narrator.entityTick + 1;
+    int row = 0;
+    int col = 0;
+    for (int i = narrator.entityTick + 1; i < narrator.entities.length; i++) {
+      if ((i - oi) % 3 == 0) {
+        row++;
+        col = 0;
       }
-    }
+      ASCII(width/10 + ((width - width/5)/3 * col), 100 + height/10 * row, entityIcon, true);
 
+      rectMode(CORNER);
+      textAlign(LEFT);
+      textSize(24);
+
+      text(narrator.entities[i].name, width/10 + ((width - width/5)/3 * col), 100 + height/10 * row + 40);
+      text(trim(str(narrator.entities[i].latitude)), width/10 + ((width - width/5)/3 * col), 100 + height/10 * row + 80);
+      text(trim(str(narrator.entities[i].longitude)), width/10 + ((width - width/5)/3 * col), 100 + height/10 * row + 120);
+      col++;
+    }
     rendered = false;
   }
 
@@ -209,7 +212,7 @@ class Interface {
       if (mouseX >= width-150 && mouseX <= width && mouseY >= height-150 && mouseY <= height) menuToggle = !menuToggle;
 
       //choice selection
-      if (choices[0] != "null") {
+      if (choices[0] != "null" && choices[0] != null) {
         for (int i = 0; i < choices.length; i++) {
           if (choices[i] != "null") {
             if (mouseX >= width/10 && mouseX <= width - width/10 && mouseY >= (height/3 * 2) + (i * choiceSpacing) - choiceSpacing / 4 && mouseY <= (height/3 * 2) + choiceSpacing + (i * choiceSpacing) + (choiceSpacing / 4)) {

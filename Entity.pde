@@ -55,7 +55,7 @@ class Entity {
     }
 
     for (int i = 0; i < save.size(); i++) {
-      if (save.getJSONObject(i).name = this.name) {
+      if (save.getJSONObject(i).getString("name").equals(this.name)) {
         this.latitude = save.getJSONObject(i).getFloat("latitude");
         this.longitude = save.getJSONObject(i).getFloat("longitude");
 

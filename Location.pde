@@ -22,7 +22,8 @@ class Mapper implements LocationListener {
 
   //had to implement abstract methods from LocationListener
   public void onProviderDisabled (String provider) {
-    //
+    latitude = 0;
+    longitude = 0;
   }
   public void onProviderEnabled (String provider) {
     //

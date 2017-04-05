@@ -12,9 +12,13 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 - Add interaction options for when the user is near entities, in menu.
 
+- Add scrolling to menu interface.
+
 #### Technicality
 
-- Test load functionality.
+- Fix save functionality.
+
+- Fix conflict reset input fields.
 
 - Verify phone compatabilities.
 
@@ -28,6 +32,6 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 - Modify entity spawning system to only spawn entities if player is moving under certain speed. This keeps players from exploring Elyium when in moving vehicle.
 
-- Create persistent entity locations for city-specific adventures and community-building.
+- Create persistent entity locations for city-specific adventures and community-building (can already be done through save file).
 
 - Add entity location change option for fixing undesireable entity spawns.

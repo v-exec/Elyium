@@ -10,6 +10,9 @@ ELYIUM
 //android API context
 import android.content.Context;
 
+//android navigation environment
+import android.os.Environment;
+
 //location sensor
 import android.location.Location;
 import android.location.LocationListener;
@@ -50,9 +53,8 @@ void setup() {
   background(0);
 
   data = loadJSONArray("narrative.json");
-  narrator = new Narrator();
-
   save = loadJSONArray("save.json");
+  narrator = new Narrator();
 
   UI = new Interface();
   console = createFont("Menlo-Regular.ttf", 24, false);

@@ -28,9 +28,19 @@ class Narrator {
   boolean resolved = false;
 
   //on Narrator initialization, all entities are created and filled with their respective data (except for location)
+  //then, all entities in array are rearranged so that entities that have been encountered in previous runtime (seen through save.json) are considered as encountered
   Narrator() {
     for (int i = 0; i < entities.length; i++) {
       entities[i] = new Entity(data.getJSONObject(i));
+    }
+
+    for (int i = 0; i < entityTick; i++) {
+      if (entities[i].latitude != 444.001) {
+        Entity temp = entities[i];
+        entities[i] = entities[entityTick];
+        entities[entityTick] = temp;
+        entityTick--;
+      }
     }
   }
 
@@ -87,25 +97,29 @@ class Narrator {
 
   //'searches' for entities to spawn
   public boolean search() {
-    if (entityTick < 0) return false;
+    if (entityTick < -1) return false;
 
-    //check if player is sufficiently far from other entities and has waited long enough to spawn new entity
+    //check if player is sufficiently far from other entities to spawn new entity
     for (int i = entityTick + 1; i < entities.length; i++) {
-      if (dist(mapper.latitude, mapper.longitude, entities[i].latitude, entities[i].longitude) < 0.005 || spawn.timed() == false) return false;
+      if (dist(mapper.latitude, mapper.longitude, entities[i].latitude, entities[i].longitude) < 0.005) return false;
     }
 
-    //picks a random unencountered entity and 'encounters' them, putting them beyond entityTick in entites[]
-    int entityIndex = round(random(0, entityTick));
-    UI.entity = entities[entityIndex];
-    entities[entityIndex].latitude = mapper.latitude;
-    entities[entityIndex].longitude = mapper.longitude;
+    //check if player has waited long enough to spawn new entity
+    if (spawn.timed()) {
+      //picks a random unencountered entity and 'encounters' them, putting them beyond entityTick in entites[]
+      int entityIndex = round(random(0, entityTick));
+      UI.entity = entities[entityIndex];
+      entities[entityIndex].latitude = mapper.latitude;
+      entities[entityIndex].longitude = mapper.longitude;
 
-    Entity temp = entities[entityIndex];
-    entities[entityIndex] = entities[entityTick];
-    entities[entityTick] = temp;
-    entityTick--;
+      Entity temp = entities[entityIndex];
+      entities[entityIndex] = entities[entityTick];
+      entities[entityTick] = temp;
+      entityTick--;
 
-    return true;
+      return true;
+    }
+    return false;
   }
 
   //checks whether or not the conditions for a conflict have been met
@@ -139,7 +153,7 @@ class Narrator {
     //clear entities before saving
     for (int i = 0; i < save.size(); i++) save.remove(i);
 
-    for (int i = 0; i <= entitiesTick; i++) {
+    for (int i = 0; i <= entityTick; i++) {
       JSONObject se = new JSONObject();
       se.setString("name", entities[i].name);
       se.setFloat("latitude", entities[i].latitude);
@@ -152,6 +166,6 @@ class Narrator {
       }
       save.setJSONObject(i, se);
     }
-    saveJSONArray(save, "data/save.json");
+    saveJSONArray(save, Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
   }
 }
