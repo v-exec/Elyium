@@ -56,7 +56,7 @@ void setup() {
   data = loadJSONArray("narrative.json");
   f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
   if (f.exists()) save = loadJSONArray(Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
-  else save = loadJSONArray("save.json");
+  else save = new JSONArray();
 
   narrator = new Narrator();
 

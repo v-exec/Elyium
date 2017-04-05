@@ -124,28 +124,28 @@ class Narrator {
 
   //checks whether or not the conditions for a conflict have been met
   private boolean checkConditions(Conflict con) {
-    if (con.conditions == null) return true;
-    else {
-      boolean[] verified = new boolean[con.conditions.length];
+    if (con.conditions == null)
+      return true;
 
-      for (int i = 0; i < con.conditions.length; i++) {
-        for (int j = 0; j < entities.length; j++) {
-          if (entities[j].name.equals(con.conditions[i].entity)) {
-            for (int k = 0; k < entities[j].conflicts.length; k++) {
-              if (entities[j].conflicts[k].name.equals(con.conditions[i].con)) {
-                if (entities[j].conflicts[k].res != null) {
-                  if (entities[j].conflicts[k].res.equals(con.conditions[i].res)) verified[i] = true;
+    int countVerified = con.conditions.length;
+
+    for (int i = 0; i < con.conditions.length; i++) {
+      for (int j = 0; j < entities.length; j++) {
+        if (entities[j].name.equals(con.conditions[i].entity)) {
+          for (int k = 0; k < entities[j].conflicts.length; k++) {
+            if (entities[j].conflicts[k].name.equals(con.conditions[i].con)) {
+              if (entities[j].conflicts[k].res != null) {
+                if (entities[j].conflicts[k].res.equals(con.conditions[i].res)) {
+                  countVerified--;
+                  if (countVerified == 0) return true;
                 }
               }
             }
           }
         }
       }
-      for (int i = 0; i < verified.length; i++) {
-        if (!verified[i]) return false;
-      }
-      return true;
     }
+    return false;
   }
 
   //saves encountered entities, their coordinates, and their conflict resolutions (saves to android /data folder, not typical processing sketch data folder)
@@ -164,16 +164,8 @@ class Narrator {
           se.setString(entities[i].conflicts[j].name, entities[i].conflicts[j].res);
         }
       }
-      save.setJSONObject(i, se);
+      save.append(se);
     }
-
-    //clear JSONArray of null objects that are randomly created for some apparent reason?!
-    for (int i = 0; i < save.size(); i++) {
-      if (save.get(i).equals(null)) save.remove(i);
-    }
-    
-    //DO NOT ASK ME WHY THIS WORKS
-    if (!f.exists()) save.remove(0);
     saveJSONArray(save, Environment.getExternalStorageDirectory().getAbsolutePath() + "/data/save.json");
   }
 }

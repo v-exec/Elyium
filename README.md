@@ -16,8 +16,6 @@ A breakdown of the remaining tasks (in their respective systems) to be completed
 
 #### Technicality
 
-- Fix save/load system.
-
 - Fix conflict reset input fields.
 
 - Verify phone compatabilities.
