@@ -3,7 +3,6 @@
 	"cover": "synthetic cavern.png",
 	"animate": true,
 	"context": "The clouds gather, night sets, all sky light burns out from the surface of the planes. A small, cyan light marks the entrance of a large cavern composed of cables and hardware. As you carefully enter the cave, the entrance closes behind you. Faint lights guide the path.",
-
 	"conflicts": [{
 		"name": "K0",
 		"def": "As you walk along the reverberating corridors, clicks and chirps echo through the inner-walls of the cavern. In the overwhelming darkness, you notice one of the lights near you has begun to flicker.",
@@ -22,7 +21,7 @@
 						}, {
 							"name": "R3",
 							"def": "Stay calm, stand still, be quiet.",
-							"res": "The wires composing the cave walls organically begin to close. They wrap themselves around you, but don't seem to consider you a threat. As they investigate your body, the lights slowly shift to the soft blue they were previously. You begin walking again, and find the exit. You've acquired a mysterious hardware chip."
+							"res": "The wires composing the cave walls organically begin to close. They wrap themselves around you, but don't seem to consider you a threat. As they investigate your body, the lights slowly shift to the soft blue they were previously. You begin walking again, and find the exit. You've acquired [a mysterious hardware chip]."
 						}]
 					}
 				}, {
@@ -35,6 +34,19 @@
 			"name": "R0",
 			"def": "Ignore the light and keep walking.",
 			"res": "RESET-You keep walking, keeping your hand steadily planted on the metallic walls so as to keep yourself coordinated. Despite your efforts, you see another flickering light. Maybe you've been going in loops?"
+		}]
+	}, {
+		"name": "K1",
+		"def": "The cave doesn't lead to anywhere. The end of the single corridor is decorated with ornamental lights. There's a well-lit pedistal on top of which sits a strange, foreign device. It exudes an aura of extreme attraction and curiosity.",
+		"choices": [{
+			"name": "R0",
+			"def": "Pick up the device.",
+			"res": "You pick up the object. Harsh corridor lights come on, revealing the almost organic texture of the metallic walls. A neon sign above the pedistal lights up. 'Good Choice'. The cavern rises above the ground, opening an exit to the planes. You've acquired [an alien key]."
+		}],
+		"conditions": [{
+			"entity": "synthetic cavern",
+			"con": "K0",
+			"res": "R0"
 		}]
 	}]
 }

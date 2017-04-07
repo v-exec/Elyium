@@ -1,5 +1,82 @@
 [
   {
+    "cover": "memory box.png",
+    "name": "memory box",
+    "context": "After what feels like days of walking in the infinite planes, you notice a small black cube a few meters away, sitting on the dry soil.",
+    "conflicts": [
+      {
+        "def": "The cube has rune-like inscriptions indented into its surface. They pulsate with a barely visible golden light.",
+        "name": "K0",
+        "choices": [
+          {
+            "con": {
+              "def": "You get close to the cube. With each step, it shifts in size. It is now the size of a small house.",
+              "choices": [
+                {
+                  "con": {
+                    "def": "You turn around to walk away. Your field of view is expanded, and the periphery of your vision is engulfed in black.",
+                    "choices": [
+                      {
+                        "res": "You continue to walk until the cube takes up the entirety of your vision. All is black. You continue to walk. Nothing is black. There is no cube.",
+                        "def": "Walk into the cube.",
+                        "name": "R1"
+                      },
+                      {
+                        "res": "The swallowing darkness of your vision gradually dissipates until everything has returned back to normal. You look behind you, the small cube is still there. You keep walking.",
+                        "def": "Walk away from the cube.",
+                        "name": "R2"
+                      }
+                    ]
+                  },
+                  "def": "Walk away."
+                },
+                {
+                  "res": "You continue to walk until the cube takes up the entirety of your vision. All is black. You continue to walk. Nothing is black. There is no cube.",
+                  "def": "Walk even closer.",
+                  "name": "R1"
+                }
+              ]
+            },
+            "def": "Approach the cube."
+          },
+          {
+            "res": "You continue walking. You look back, the cube is no longer there. A light burning scent caresses your nose.",
+            "def": "Keep walking.",
+            "name": "R0"
+          }
+        ]
+      },
+      {
+        "def": "The mysterious cube once again sits still on the ground.",
+        "name": "K1",
+        "choices": [{
+          "con": {
+            "def": "The cube doesn't change size. It calmly remains in place.",
+            "choices": [
+              {
+                "res": "The moment your hands touch the cube, you feel a tremendous weight crush your entire body. The pain is immense. Your last memory is that of an old friend looking at you, smiling. You've acquired [a dark, four dimensional object].",
+                "def": "Pick up the cube.",
+                "name": "R0"
+              },
+              {
+                "res": "Three steps away from the cube, it combusts into a violent fire. It is incinerated within seconds. This time, the smell produced seems sweet, like a comforting food. You've acquired [a beautiful memory].",
+                "def": "Walk way from the cube.",
+                "name": "R1"
+              }
+            ]
+          },
+          "def": "Approach the cube."
+        }],
+        "conditions": [{
+          "res": "R0",
+          "con": "K0",
+          "entity": "4D cube"
+        }]
+      }
+    ],
+    "animate": true
+  },
+  {
     "cover": "monument.png",
     "name": "monument",
     "context": "Before you stands an odd megastructure approximately 40 meters in height, and 5x5 meters in width and length. It's shaped like a thin pyramid, with various degraded inscriptions along each of its corners, and appears to be a religious monument of some sort due to its complex ornamentation.",
@@ -74,48 +151,64 @@
     "cover": "synthetic cavern.png",
     "name": "synthetic cavern",
     "context": "The clouds gather, night sets, all sky light burns out from the surface of the planes. A small, cyan light marks the entrance of a large cavern composed of cables and hardware. As you carefully enter the cave, the entrance closes behind you. Faint lights guide the path.",
-    "conflicts": [{
-      "def": "As you walk along the reverberating corridors, clicks and chirps echo through the inner-walls of the cavern. In the overwhelming darkness, you notice one of the lights near you has begun to flicker.",
-      "name": "K0",
-      "choices": [
-        {
-          "con": {
-            "def": "You approach the light and notice a small chip, centimeters away from the glowing hot wire.",
-            "choices": [
-              {
-                "con": {
-                  "def": "You slowly reach for the tiny bit of hardware. Out of anxiety, you flinch and burn yourself on the wire, but manage to grab on to the component. The cave is sharply illuminated in a dark red.",
-                  "choices": [
-                    {
-                      "res": "You make a run for it. The wires composing the cave walls organically begin to close in, slowly wrapping themselves around you and tethering themselves to your clothes. As the cavern closes, you manage make it out of the web of cables and exit the cavern. You seem to have lost the chip in the panic.",
-                      "def": "Try to run and find the cave exit as quickly as possible.",
-                      "name": "R2"
-                    },
-                    {
-                      "res": "The wires composing the cave walls organically begin to close. They wrap themselves around you, but don't seem to consider you a threat. As they investigate your body, the lights slowly shift to the soft blue they were previously. You begin walking again, and find the exit. You've acquired a mysterious hardware chip.",
-                      "def": "Stay calm, stand still, be quiet.",
-                      "name": "R3"
-                    }
-                  ]
+    "conflicts": [
+      {
+        "def": "As you walk along the reverberating corridors, clicks and chirps echo through the inner-walls of the cavern. In the overwhelming darkness, you notice one of the lights near you has begun to flicker.",
+        "name": "K0",
+        "choices": [
+          {
+            "con": {
+              "def": "You approach the light and notice a small chip, centimeters away from the glowing hot wire.",
+              "choices": [
+                {
+                  "con": {
+                    "def": "You slowly reach for the tiny bit of hardware. Out of anxiety, you flinch and burn yourself on the wire, but manage to grab on to the component. The cave is sharply illuminated in a dark red.",
+                    "choices": [
+                      {
+                        "res": "You make a run for it. The wires composing the cave walls organically begin to close in, slowly wrapping themselves around you and tethering themselves to your clothes. As the cavern closes, you manage make it out of the web of cables and exit the cavern. You seem to have lost the chip in the panic.",
+                        "def": "Try to run and find the cave exit as quickly as possible.",
+                        "name": "R2"
+                      },
+                      {
+                        "res": "The wires composing the cave walls organically begin to close. They wrap themselves around you, but don't seem to consider you a threat. As they investigate your body, the lights slowly shift to the soft blue they were previously. You begin walking again, and find the exit. You've acquired [a mysterious hardware chip].",
+                        "def": "Stay calm, stand still, be quiet.",
+                        "name": "R3"
+                      }
+                    ]
+                  },
+                  "def": "Grab the chip."
                 },
-                "def": "Grab the chip."
-              },
-              {
-                "res": "You continue walking and eventually notice light down the corridor marking an exit to the cave. Upon exiting, you notice it is now day time. The cavern slowly sinks into the dust, a small neon text above the entrance illuminates. 'Thank you.'",
-                "def": "Avoid the hot wire and the chip, and keep walking.",
-                "name": "R1"
-              }
-            ]
+                {
+                  "res": "You continue walking and eventually notice light down the corridor marking an exit to the cave. Upon exiting, you notice it is now day time. The cavern slowly sinks into the dust, a small neon text above the entrance illuminates. 'Thank you.'",
+                  "def": "Avoid the hot wire and the chip, and keep walking.",
+                  "name": "R1"
+                }
+              ]
+            },
+            "def": "Investigate the flickering light."
           },
-          "def": "Investigate the flickering light."
-        },
-        {
-          "res": "RESET-You keep walking, keeping your hand steadily planted on the metallic walls so as to keep yourself coordinated. Despite your efforts, you see another flickering light. Maybe you've been going in loops?",
-          "def": "Ignore the light and keep walking.",
+          {
+            "res": "RESET-You keep walking, keeping your hand steadily planted on the metallic walls so as to keep yourself coordinated. Despite your efforts, you see another flickering light. Maybe you've been going in loops?",
+            "def": "Ignore the light and keep walking.",
+            "name": "R0"
+          }
+        ]
+      },
+      {
+        "def": "The cave doesn't lead to anywhere. The end of the single corridor is decorated with ornamental lights. There's a well-lit pedistal on top of which sits a strange, foreign device. It exudes an aura of extreme attraction and curiosity.",
+        "name": "K1",
+        "choices": [{
+          "res": "You pick up the object. Harsh corridor lights come on, revealing the almost organic texture of the metallic walls. A neon sign above the pedistal lights up. 'Good Choice'. The cavern rises above the ground, opening an exit to the planes. You've acquired [an alien key].",
+          "def": "Pick up the device.",
           "name": "R0"
-        }
-      ]
-    }],
+        }],
+        "conditions": [{
+          "res": "R0",
+          "con": "K0",
+          "entity": "synthetic cavern"
+        }]
+      }
+    ],
     "animate": true
   },
   {

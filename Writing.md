@@ -107,11 +107,68 @@ if entity "entity name"'s master conflict "K0" has been resolved by reaching its
 
 This way, one entity can have conflicts only accessible if the player has reached certain conclusions in entirely different entities. This creates a narrative connection between entities, and allows for huge, elaborate narrative chains.
 
+### Example Entity
+
+```
+{
+	"name": "synthetic cavern",
+	"cover": "synthetic cavern.png",
+	"animate": true,
+	"context": "The clouds gather, night sets, all sky light burns out from the surface of the planes. A small, cyan light marks the entrance of a large cavern composed of cables and hardware. As you carefully enter the cave, the entrance closes behind you. Faint lights guide the path.",
+	"conflicts": [{
+		"name": "K0",
+		"def": "As you walk along the reverberating corridors, clicks and chirps echo through the inner-walls of the cavern. In the overwhelming darkness, you notice one of the lights near you has begun to flicker.",
+		"choices": [{
+			"def": "Investigate the flickering light.",
+			"con": {
+				"def": "You approach the light and notice a small chip, centimeters away from the glowing hot wire.",
+				"choices": [{
+					"def": "Grab the chip.",
+					"con": {
+						"def": "You slowly reach for the tiny bit of hardware. Out of anxiety, you flinch and burn yourself on the wire, but manage to grab on to the component. The cave is sharply illuminated in a dark red.",
+						"choices": [{
+							"name": "R2",
+							"def": "Try to run and find the cave exit as quickly as possible.",
+							"res": "You make a run for it. The wires composing the cave walls organically begin to close in, slowly wrapping themselves around you and tethering themselves to your clothes. As the cavern closes, you manage make it out of the web of cables and exit the cavern. You seem to have lost the chip in the panic."
+						}, {
+							"name": "R3",
+							"def": "Stay calm, stand still, be quiet.",
+							"res": "The wires composing the cave walls organically begin to close. They wrap themselves around you, but don't seem to consider you a threat. As they investigate your body, the lights slowly shift to the soft blue they were previously. You begin walking again, and find the exit. You've acquired [a mysterious hardware chip]."
+						}]
+					}
+				}, {
+					"name": "R1",
+					"def": "Avoid the hot wire and the chip, and keep walking.",
+					"res": "You continue walking and eventually notice light down the corridor marking an exit to the cave. Upon exiting, you notice it is now day time. The cavern slowly sinks into the dust, a small neon text above the entrance illuminates. 'Thank you.'"
+				}]
+			}
+		}, {
+			"name": "R0",
+			"def": "Ignore the light and keep walking.",
+			"res": "RESET-You keep walking, keeping your hand steadily planted on the metallic walls so as to keep yourself coordinated. Despite your efforts, you see another flickering light. Maybe you've been going in loops?"
+		}]
+	}, {
+		"name": "K1",
+		"def": "The cave doesn't lead to anywhere. The end of the single corridor is decorated with ornamental lights. There's a well-lit pedistal on top of which sits a strange, foreign device. It exudes an aura of extreme attraction and curiosity.",
+		"choices": [{
+			"name": "R0",
+			"def": "Pick up the device.",
+			"res": "You pick up the object. Harsh corridor lights come on, revealing the almost organic texture of the metallic walls. A neon sign above the pedistal lights up. 'Good Choice'. The cavern rises above the ground, opening an exit to the planes. You've acquired [an alien key]."
+		}],
+		"conditions": [{
+			"entity": "synthetic cavern",
+			"con": "K0",
+			"res": "R0"
+		}]
+	}]
+}
+```
+
 ## Custom Save Files
 
 Besides being able to write your own narratives, you can also create custom save files. What does this mean? The save file contains all encountered entities, their real-world coordinates, and all conflicts that have been resolved, with their respective resolutions.
 
-By simply modifying what's inside the save file, you can subvert the random entity spawning system by giving each entity a set of coordinates. If multiple players install the same build of _Elyium_, they would all encounter the same entities in the same locations, making this a community-centered game as players must get together to share their findings. Or perhaps, you can make certain entities visible in the database/menu view from the very beginning, encouraging players to go to the entity locations they already see, essentially making entities act as map markers.
+By simply modifying what's inside the save file, you can subvert the random entity spawning system by giving each entity a set of coordinates (you can find latitude and longitude coordinates on Google Maps, if you want to put entities in real-world locations). If multiple players install the same build of _Elyium_, they would all encounter the same entities in the same locations, making this a community-centered game as players must get together to share their findings. Or perhaps, you can make certain entities visible in the database/menu view from the very beginning, encouraging players to go to the entity locations they already see, essentially making entities act as map markers.
 
 The formatting for a save file is very simple.
 

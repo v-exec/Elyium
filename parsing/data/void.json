@@ -3,7 +3,6 @@
 	"cover": "void.png",
 	"animate": true,
 	"context": "Nothing but fog surrounds you. Every step in one direction brings you back to your point of origin. You are in the Void.",
-
 	"conflicts": [{
 		"name": "K0",
 		"def": "The ground is slightly wet from a light rain. Your vision is blurry. You can't remember much, other than a bright flash of light. Your body is draped in partially torn fabric, gently dragging across the grey soil. The device you're holding, it contains traces of the limbo world, Elyium. Its GPS functionality should allow you to access Elyium for yourself.",

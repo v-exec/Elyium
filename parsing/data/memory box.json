@@ -1,0 +1,62 @@
+{
+	"name": "memory box",
+	"cover": "memory box.png",
+	"animate": true,
+	"context": "After what feels like days of walking in the infinite planes, you notice a small black cube a few meters away, sitting on the dry soil.",
+	"conflicts": [{
+		"name": "K0",
+		"def": "The cube has rune-like inscriptions indented into its surface. They pulsate with a barely visible golden light.",
+		"choices": [{
+			"def": "Approach the cube.",
+			"con": {
+				"def": "You get close to the cube. With each step, it shifts in size. It is now the size of a small house.",
+				"choices": [{
+					"def": "Walk away.",
+					"con": {
+						"def": "You turn around to walk away. Your field of view is expanded, and the periphery of your vision is engulfed in black.",
+						"choices": [{
+							"name": "R1",
+							"def": "Walk into the cube.",
+							"res": "You continue to walk until the cube takes up the entirety of your vision. All is black. You continue to walk. Nothing is black. There is no cube."
+						}, {
+							"name": "R2",
+							"def": "Walk away from the cube.",
+							"res": "The swallowing darkness of your vision gradually dissipates until everything has returned back to normal. You look behind you, the small cube is still there. You keep walking."
+						}]
+					}
+				}, {
+					"name": "R1",
+					"def": "Walk even closer.",
+					"res": "You continue to walk until the cube takes up the entirety of your vision. All is black. You continue to walk. Nothing is black. There is no cube."
+				}]
+			}
+		}, {
+			"name": "R0",
+			"def": "Keep walking.",
+			"res": "You continue walking. You look back, the cube is no longer there. A light burning scent caresses your nose."
+		}]
+	}, {
+		"name": "K1",
+		"def": "The mysterious cube once again sits still on the ground.",
+		"choices": [{
+			"def": "Approach the cube.",
+			"con": {
+				"def": "The cube doesn't change size. It calmly remains in place.",
+				"choices": [{
+					"name": "R0",
+					"def": "Pick up the cube.",
+					"res": "The moment your hands touch the cube, you feel a tremendous weight crush your entire body. The pain is immense. Your last memory is that of an old friend looking at you, smiling. You've acquired [a dark, four dimensional object]."
+				}, {
+					"name": "R1",
+					"def": "Walk way from the cube.",
+					"res": "Three steps away from the cube, it combusts into a violent fire. It is incinerated within seconds. This time, the smell produced seems sweet, like a comforting food. You've acquired [a beautiful memory]."
+				}]
+			}
+		}],
+		"conditions": [{
+			"entity": "4D cube",
+			"con": "K0",
+			"res": "R0"
+		}]
+	}]
+}
