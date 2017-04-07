@@ -1,9 +1,0 @@
-# Elyium - Artist Statement
-
-_Elyium_ is an experimental alternate reality game and narrative platform. It contains two separate facets that are appealing to two separate demographics: The player and the narrator.
-
-In _Elyium_, the player's phone is described as an artifact of the alternate reality; a conduit, or a sort of gateway to the world of _Elyium_, a limbo realm that exists in the void between realities. This world is filled with various entities (objects, locations, events, and people), each with their own sets of branching narrative adventures. For the player, each encounter with an entity presents an oportunity for exploration that grants them a snippet of understanding of the reality around them, and a chance to reach the resolution of a narrative conflict that acts as a reflection of them, as a decision-maker and person.
-
-However, _Elyium_ is not exclusively a narrative game, but also a platform that allows writers to create their own sets of narrative content that is then implemented using the same entity mechanics. This means that narrators who wish to utilize this environment for their own stories are free to use the underlying feature set and narrative format of _Elyium_ with their own content.
-
-The way this system / format works is by creating an array of pre-written entities that are (more or less) randomly spawned at the player's location as the player navigates the physical realm. Each entity has a set of conflicts (which can be conditional, only presented to players once other conflicts (from either the same entity or others) have been resolved in specific ways), and each conflict has a set of choices that the player can make in order to resolve it. Choices either lead to a resolution, ending the conflict and letting the player continue roaming the world again, or they lead to another conflict, creating a chain of events that can technically last as long as the narrator wishes.

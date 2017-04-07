@@ -28,18 +28,21 @@ class Narrator {
   boolean resolved = false;
 
   //on Narrator initialization, all entities are created and filled with their respective data (except for location)
-  //then, all entities in array are rearranged so that entities that have been encountered in previous runtime (seen through save.json) are considered as encountered
+  //then, all entities in array are rearranged so that entities that have been encountered in previous runtime (seen through existence of resolution in save.json) are considered as encountered
   Narrator() {
     for (int i = 0; i < entities.length; i++) {
       entities[i] = new Entity(data.getJSONObject(i));
     }
 
     for (int i = entityTick; i > -1; i--) {
-      if (entities[i].latitude != 444.001) {
-        Entity temp = entities[i];
-        entities[i] = entities[entityTick];
-        entities[entityTick] = temp;
-        entityTick--;
+      for (int j = 0; j < entities[i].conflicts.length; j++) {
+        if (entities[i].conflicts[j].res != null) {
+          Entity temp = entities[i];
+          entities[i] = entities[entityTick];
+          entities[entityTick] = temp;
+          entityTick--;
+          break;
+        }
       }
     }
   }
@@ -99,7 +102,7 @@ class Narrator {
   public boolean search() {
     if (entityTick <= -1) return false;
 
-    //check if player is sufficiently far from other entities to spawn new entity
+    //check if player is sufficiently far from encountered entities to spawn new entity
     for (int i = entityTick + 1; i < entities.length; i++) {
       if (dist(mapper.latitude, mapper.longitude, entities[i].latitude, entities[i].longitude) < 0.005) return false;
     }
