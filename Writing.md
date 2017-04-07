@@ -136,7 +136,7 @@ Finally, `"K0": "R0"` is an example of what a saved master conflict with its res
 
 In order for an entity to be visible in the database, it must have at least one resolved master conflict.
 
-If you're making a custom save file, keep in mind these two things: First of all, each object *must* have `name`, `longitude`, and `latitude` keys. Conflicts and their resolutions are optional. Second of all, this file will be updated over the course of the player's game, meaning that more fancy fooling around with this file (things not covered in this guide) can cause unexpected results.
+If you're making a custom save file, keep in mind these three things: First of all, each object *must* have `name`, `longitude`, and `latitude` keys. Conflicts and their resolutions are optional. Second of all, this file will be updated over the course of the player's game, meaning that more fancy fooling around with this file (things not covered in this guide) can cause unexpected results. Finally, putting entities very close to one another (anything closer than 0.010 degrees) can cause issues in the spawning system.
 
 ## Building Elyium
 

@@ -109,6 +109,22 @@ class Narrator {
 
     //check if player has waited long enough to spawn new entity
     if (spawn.timed()) {
+
+      //check if there are custom entities near player to encounter before fetching a random one
+      for (int i = 0; i <= entityTick; i++) {
+        if (entities[i].latitude != 444.001) {
+          if (dist(mapper.latitude, mapper.longitude, entities[i].latitude, entities[i].longitude) < 0.006) {
+            UI.entity = entities[i];
+            Entity temp = entities[i];
+            entities[i] = entities[entityTick];
+            entities[entityTick] = temp;
+            entityTick--;
+
+            return true;
+          }
+        }
+      }
+
       //picks a random unencountered entity and 'encounters' them, putting them beyond entityTick in entites[]
       int entityIndex = round(random(0, entityTick));
       UI.entity = entities[entityIndex];

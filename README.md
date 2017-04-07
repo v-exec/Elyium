@@ -28,26 +28,16 @@ All entities are written in a `.json` format. Due to the parsing system being qu
 
 ## Plan
 
-A breakdown of the remaining tasks (in their respective systems) to be completed for the production of this project, in (more or less) chronological order.
-
-### Interfacing
+A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order.
 
 - Add interaction options for when the user is near entities, in menu.
 
-- Add scrolling to menu interface.
-
-### Technicality
-
-- Verify phone compatabilities.
-
-- Add vibration feedback for UI presses and entity encounters.
-
 - Test conditional conflicts' new algorithm structure.
+
+- Add scrolling to menu interface.
 
 - Use timer to keep players from continuously getting narratives in the same entity by persistently interacting with it.
 
-- Allow for entities to have saved coordinates and be encountered when player is near given coordinates.
+- Add vibration feedback for UI presses and entity encounters.
 
-### Content
-
-- Write.
+- Verify phone compatabilities.
