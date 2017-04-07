@@ -117,12 +117,12 @@ The formatting for a save file is very simple.
 
 ```
 [
-	{
-		"name": "entity name",
-		"longitude": 24.502,
-		"latitude": 185.200,
-		"K0": "R0"
-	}
+  {
+    "name": "entity name",
+    "longitude": 24.502,
+    "latitude": 185.200,
+    "K0": "R0"
+  }
 ]
 ```
 
