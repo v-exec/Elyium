@@ -174,12 +174,12 @@ The formatting for a save file is very simple.
 
 ```
 [
-  {
-    "name": "entity name",
-    "longitude": 24.502,
-    "latitude": 185.200,
-    "K0": "R0"
-  }
+	{
+		"name": "entity name",
+		"longitude": 24.502,
+		"latitude": 185.200,
+		"K0": "R0"
+	}
 ]
 ```
 
@@ -217,11 +217,20 @@ After you've arranged all of your files, you just need to build the application.
 
 Here are some resources that may help you with writing for _Elyium_.
 
-JSON validators and formatters
+### JSON validators and formatters.
+
 http://jsonlint.com/
+
 https://jsonformatter.curiousconcept.com/
 
-Online JSON editors
+### Online JSON editors.
+
 http://www.jsoneditoronline.org/
+
 http://www.cleancss.com/json-editor/
+
 http://codebeautify.org/online-json-editor
+
+### Local JSON editor.
+
+I personally use [Sublime](https://www.sublimetext.com/) for any text editing, including writing for _Elyium_. Though technically, any editor that has syntax highlighting (which helps significantly in keeping track of things) will work great.
