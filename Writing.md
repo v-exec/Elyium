@@ -23,9 +23,13 @@ Below are a list of instructional segments describing how entities and their com
 ```
 
 The `name` is visible in the database/menu view.
+
 The `cover` image must be 500px x 500px, preferably in .png format.
+
 The `animate` boolean determines whether the image will have the animated flickering ASCII bits. Due to Processing's inefficient text rendering, bright images create a lot of text and end up causing some lag, in which case it's best to leave `animate` to `false`. Also, some images simply don't look good animated, so feel free to turn off animation for those, as well. *NOTE*: `animate` takes a boolean value, therefore it must not have quotes `"` around it.
+
 The `context` is the piece of text that players will always see when they begin a narrative sequence. It's best to make it something to set the mood, but vague enough to allow for each master conflict to take over the narrative seamlessly.
+
 The `conflicts` is an object holding an array of master conflicts (more on that below).
 
 ### Master Conflict
@@ -38,8 +42,11 @@ The `conflicts` is an object holding an array of master conflicts (more on that 
 ```
 
 The `name`'s format itself isn't important, "K0", "K1"... is my own naming convention. This is never visible to players.
+
 The `def` is what the players will see when they are presented with this conflict. This is visible to players.
+
 The `choices` is an object containing an array of choice objects (more on that below).
+
 The `conditions` are objects containing an array of condition objects (more on that below).
 
 ### Choice
@@ -54,6 +61,7 @@ If the choice contains a conflict, it is formatted like this:
 ```
 
 The `con` is a sub-conflict.
+
 The `def` is the description attributed to the choice. This is visible to players.
 
 If the choice is one marking the conflict resolution, it is formatted like this:
@@ -65,6 +73,7 @@ If the choice is one marking the conflict resolution, it is formatted like this:
 ```
 
 Much like the master conflict, the `name` format is not integral. It is never visible to players.
+
 The `res` is what players will see as a resolution to the conflict before being taken out of the narrative sequence. This is visible to players.
 
 Additionally, if a `res` starts with `START-`, followed by some text, it will reset the master conflcit to the beginning and show whatever follows the dash of `START-`. This is useful for narratives that loop back to the beginning, or involve some form of trial and error, or are centered around solving a puzzle.
@@ -77,6 +86,7 @@ Additionally, if a `res` starts with `START-`, followed by some text, it will re
 ```
 
 The `def` is what players will see when they are presented with this sub-conflict. This is visible to players.
+
 The `choices` is an object containing an array of choice objects.
 
 ### Conditions
@@ -117,10 +127,13 @@ The formatting for a save file is very simple.
 ```
 
 That right there is the entirey of the `save.json` file.
+
 The `name` is the entity in question's name.
+
 The `longitude` and `latitude` are its real-world coordinates. *NOTE*: these two values are floats, and so they must not be surrounded by quotes `"`.
 
 Finally, `"K0": "R0"` is an example of what a saved master conflict with its respective resolution would look like. `K0` is the master conflict name, and `R0` is the name of the resolution that was reached in this master conflict.
+
 In order for an entity to be visible in the database, it must have at least one resolved master conflict.
 
 If you're making a custom save file, keep in mind these two things: First of all, each object *must* have `name`, `longitude`, and `latitude` keys. Conflicts and their resolutions are optional. Second of all, this file will be updated over the course of the player's game, meaning that more fancy fooling around with this file (things not covered in this guide) can cause unexpected results.
