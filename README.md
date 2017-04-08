@@ -2,6 +2,8 @@
 
 _Elyium_ is an experimental mobile alternate reality game, and a platform for narrative experiences and storytelling.
 
+To play, download the APK in this repository named `Elyium.apk` and install it on an Android device.
+
 [More information on this project can be found here.](http://v-os.ca/elyium)
 
 ## What is Elyium?
@@ -32,7 +34,7 @@ A breakdown of the remaining tasks to be completed for the production of this pr
 
 - Fix weird startup crash (drawcolor on null object).
 
-- Keep program from crashing when user doesn't allow location tracking.
+- Keep program from crashing when user doesn't allow location tracking (should I?).
 
 - Add scrolling to menu interface.
 
