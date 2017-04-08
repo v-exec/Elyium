@@ -46,7 +46,7 @@
 		"conditions": [{
 			"entity": "synthetic cavern",
 			"con": "K0",
-			"res": "R0"
+			"res": "R1"
 		}]
 	}]
 }

@@ -61,7 +61,7 @@ class Entity {
 
         for (int j = 0; j < conflicts.length; j++) {
           if (save.getJSONObject(i).hasKey(conflicts[j].name)) {
-            conflicts[i].res = save.getJSONObject(i).getString(conflicts[j].name);
+            conflicts[j].res = save.getJSONObject(i).getString(conflicts[j].name);
           }
         }
       }

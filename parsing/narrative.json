@@ -70,7 +70,7 @@
         "conditions": [{
           "res": "R0",
           "con": "K0",
-          "entity": "4D cube"
+          "entity": "memory box"
         }]
       }
     ],
@@ -203,7 +203,7 @@
           "name": "R0"
         }],
         "conditions": [{
-          "res": "R0",
+          "res": "R1",
           "con": "K0",
           "entity": "synthetic cavern"
         }]
@@ -232,12 +232,12 @@
           {
             "res": "Walk, and see for yourself. This limbo world, Elyium, contains remnants from realities distant and near, both in time and space. As you roam the planes of solitude, you will encounter such entities. All choices you make will be recorded, and all other timelines will be crushed into inexistence.",
             "def": "What is this world?",
-            "name": "R1"
+            "name": "R0"
           },
           {
             "res": "The device you're holding is connected to Elyium, the limbo world. Here reside entities from various realities, ones you will inevitably come accross by simply roaming the planes outside of the void. When encountering these entities, you will be presented with various courses of action. Not all choices are important, but all lead down different paths.",
             "def": "How does this world function?",
-            "name": "R2"
+            "name": "R1"
           }
         ],
         "conditions": [{

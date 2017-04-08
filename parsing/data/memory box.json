@@ -54,7 +54,7 @@
 			}
 		}],
 		"conditions": [{
-			"entity": "4D cube",
+			"entity": "memory box",
 			"con": "K0",
 			"res": "R0"
 		}]

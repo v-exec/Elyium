@@ -15,11 +15,11 @@
 		"name": "K1",
 		"def": "Welcome back to the Void.",
 		"choices": [{
-			"name": "R1",
+			"name": "R0",
 			"def": "What is this world?",
 			"res": "Walk, and see for yourself. This limbo world, Elyium, contains remnants from realities distant and near, both in time and space. As you roam the planes of solitude, you will encounter such entities. All choices you make will be recorded, and all other timelines will be crushed into inexistence."
 		}, {
-			"name": "R2",
+			"name": "R1",
 			"def": "How does this world function?",
 			"res": "The device you're holding is connected to Elyium, the limbo world. Here reside entities from various realities, ones you will inevitably come accross by simply roaming the planes outside of the void. When encountering these entities, you will be presented with various courses of action. Not all choices are important, but all lead down different paths."
 		}],

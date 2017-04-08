@@ -30,11 +30,13 @@ All entities are written in a `.json` format. Due to the parsing system being qu
 
 A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order.
 
-- Add interaction options for when the user is near entities, in menu.
+*NOTE*: _Elyium_ is now playable! Remaining tasks are related to user experience / interaction design, some minor fixes, and testing.
 
-- Test conditional conflicts' new algorithm structure.
+- Fix weird startup crash (drawcolor on null object).
 
 - Add scrolling to menu interface.
+
+- Change menu entity interface element to show it can be interacted with.
 
 - Use timer to keep players from continuously getting narratives in the same entity by persistently interacting with it.
 

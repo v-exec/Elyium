@@ -20,10 +20,10 @@ INTERFACE
  
  Menu: The state in which the player can enter at any time (regardless of whether they're in the idle state or the narrative state).
  The menu acts as a map tool that shows the player their current real-world coordinates, and the real-world coordinates of all entities they've encountered.
- /TODO/
  On the first encounter with an entity, the player is forced into a narrative sequence. In subsequent encounters, however, the player must choose to interact with the entity through the menu.
  The idea is to avoid undesireable engagement in narrative sequences.
- The encountered entities in the menu are ordered by proximity to the player. Once close enough, they are highlighted to show that they can now be interacted with.
+ /TODO/
+ Once the player is close enough to an entity, it is highlighted to show that it can now be interacted with.
  /TODO/
  
  At all times, the menu button at the bottom right corner is displayed, and the interface is waiting for potential input.
@@ -62,6 +62,11 @@ class Interface {
   boolean refresh = true;
   boolean startNarrative = false;
   boolean inNarrative = false;
+  boolean inIdle = false;
+
+  //timing parameters
+  int minSpawnTime = 1;
+  int maxSpawnTime = 1;
 
   Interface() {
     fill(255);
@@ -103,17 +108,24 @@ class Interface {
   //idle mode
   private void idle() {
     rendered = false;
+    inIdle = true;
     background(0);
     source = loadImage("idle.png");
 
-    spawn.wait(10);
+    //set wait timer for entity spawn
+    spawn.wait(round(random(minSpawnTime, maxSpawnTime)));
+
+    //if/when narrator spawns entity, start a new narrative
     if (narrator.search()) startNarrative = true;
 
+    //display idle image
     ASCII(width/2 - 250, height/2 - 250, source, true);
   }
 
   //narrative mode
   private void narrative(Entity object) {
+    inIdle = false;
+
     //get ascii image
     source = object.cover;
 
@@ -220,6 +232,34 @@ class Interface {
               refresh = true;
             }
           }
+        }
+      }
+
+      //entity selection in menu screen
+      if (inIdle && menuToggle) {
+        int oi = narrator.entityTick + 1;
+        int row = 0;
+        int col = 0;
+        for (int i = narrator.entityTick + 1; i < narrator.entities.length; i++) {
+          if ((i - oi) % 3 == 0) {
+            row++;
+            col = 0;
+          }
+          if (mouseX >= width/10 + ((width - width/5)/3 * col) && mouseX <= width/10 + ((width - width/5)/3 * col) + 200 && mouseY >= 100 + height/10 * row && mouseY <= 100 + height/10 * row + 100) {
+            //on entity click, check if player is close, if entity has any unresolved master conflicts, and if at least one conflict has met all of its conditions
+            if (dist(mapper.latitude, mapper.longitude, narrator.entities[i].latitude, narrator.entities[i].longitude) < 0.005) {
+              int count = 0;
+              for (int j = 0; j < narrator.entities[i].conflicts.length; j++) {
+                if (narrator.entities[i].conflicts[j].res == null && narrator.checkConditions(narrator.entities[i].conflicts[j])) count++;
+              }
+              if (count > 0) {
+                entity = narrator.entities[i];
+                menuToggle = !menuToggle;
+                startNarrative = true;
+              }
+            }
+          }
+          col++;
         }
       }
     }

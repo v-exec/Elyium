@@ -24,7 +24,7 @@ Below are a list of instructional segments describing how entities and their com
 
 The `name` is visible in the database/menu view.
 
-The `cover` image must be 500px x 500px, preferably in .png format.
+The `cover` image is the entity cover image, visible on the top of the screen when interacting with an entity. It must be 500px x 500px, preferably in .png format. Keep in mind, the image will be processed and showcased as an image composed of ASCII characters by using the image's pixel brightness. Test to see if the processed image is desirable, and modify the original image appropriately.
 
 The `animate` boolean determines whether the image will have the animated flickering ASCII bits. Due to Processing's inefficient text rendering, bright images create a lot of text and end up causing some lag, in which case it's best to leave `animate` to `false`. Also, some images simply don't look good animated, so feel free to turn off animation for those, as well. *NOTE*: `animate` takes a boolean value, therefore it must not have quotes `"` around it.
 
@@ -41,7 +41,7 @@ The `conflicts` is an object holding an array of master conflicts (more on that 
 "conditions": []
 ```
 
-The `name`'s format itself isn't important, "K0", "K1"... is my own naming convention. This is never visible to players.
+The `name`'s format itself isn't important, "K0", "K1"... is my own naming convention. You might find it easier to make the `name` something more memorable/contextual, like "building explodes", just make sure that all master conflicts in an entity have a unique name, and make sure to write the name identically when referring to it in the `conditions` objects. This is never visible to players.
 
 The `def` is what the players will see when they are presented with this conflict. This is visible to players.
 
@@ -72,7 +72,7 @@ If the choice is one marking the conflict resolution, it is formatted like this:
 "res": "Conflict resolution."
 ```
 
-Much like the master conflict, the `name` format is not integral. It is never visible to players.
+Much like the master conflict, the `name` format is not integral. You might find it easier to make the `name` something more memorable/contextual, like "has magical device", as it might help you keep track of the resolutions of various master conflicts. Just make sure that all possible resolutions for a master conflict are unique, and make sure to write the name identically when referring to it in the `conditions` objects. It is never visible to players.
 
 The `res` is what players will see as a resolution to the conflict before being taken out of the narrative sequence. This is visible to players.
 
@@ -158,7 +158,7 @@ This way, one entity can have conflicts only accessible if the player has reache
     "conditions": [{
       "entity": "synthetic cavern",
       "con": "K0",
-      "res": "R0"
+      "res": "R1"
     }]
   }]
 }
