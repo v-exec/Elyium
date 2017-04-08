@@ -32,6 +32,8 @@ A breakdown of the remaining tasks to be completed for the production of this pr
 
 - Fix weird startup crash (drawcolor on null object).
 
+- Keep program from crashing when user doesn't allow location tracking.
+
 - Add scrolling to menu interface.
 
 - Change menu entity interface element to show it can be interacted with.
