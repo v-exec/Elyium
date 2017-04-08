@@ -2,9 +2,9 @@
 
 ## What is your concept?
 
-_Elyium_ is an experimental mobile alternate reality game and narrative platform. The player is put inside a world filled with 'entities' from various realms, each with their own sets of branching stories to tell. Within the in-world narrative, the player's phone acts as a conduit to _Elyium_, the limbo world, granting them access to the infinate planes. As they walk around, they come accross new entities, which are saved in the player's database. Using their real-world coordinats, as well as those of recorded entities, players can revisit old places to find new experiences.
+_Elyium_ is an experimental mobile alternate reality game and narrative platform. The player is put inside a world filled with 'entities' from various realms, each with their own sets of branching stories to tell. Within the in-world narrative, the player's phone acts as a conduit to _Elyium_, the limbo world, granting them access to the infinite planes. As they walk around in the physical realm, they come accross new entities, which are saved in the player's database. Using their real-world coordinats, as well as those of recorded entities, players can revisit old places to find new experiences.
 
-Aside from being a story-centered game, _Elyium_ is also a storytelling format. The experience described above works regardless of the content of each entity's branching stories, meaning that anyone can create content for their own instance of _Elyium_. All content (entities, their stories, each story's choice, the ties between different stories, and custom real-world locations for entities) is written within a few `.json` files, making writing for this format relatively user friendly.
+Aside from being a story-centered game, _Elyium_ is also a storytelling format. The experience described above works regardless of the content of each entity's branching stories, meaning that anyone can create content for their own instance of _Elyium_. All content (entities, their stories, each story's choices, the ties between different stories, and custom real-world locations for entities) is written within a few `.json` files, making writing for this format relatively user friendly.
 
 ## How did you move through your iterations?
 
