@@ -38,6 +38,13 @@ Most importantly, however, I learned about narrative design as a discipline. Wha
 
 Currently, I'm still learning a lot about narrative through writing for _Elyium_, but what I've learned has given me great insight on how to introduce the worldly context of a fictional universe into the interaction design and systems of a product.
 
+## Screenshots
+
+### Idle
 ![](idle.png)
+
+### Narrative
 ![](narrative.png)
+
+### Menu
 ![](menu.png)
