@@ -41,10 +41,10 @@ Currently, I'm still learning a lot about narrative through writing for _Elyium_
 ## Screenshots
 
 ### Idle
-![](idle.png)
+<img src="idle.png" width="360" height="640" />
 
 ### Narrative
-![](narrative.png)
+<img src="narrative.png" width="360" height="640" />
 
 ### Menu
-![](menu.png)
+<img src="menu.png" width="360" height="640" />
