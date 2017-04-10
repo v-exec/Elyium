@@ -37,3 +37,7 @@ In regards to design and more artsy matters, the majority of the insight is rela
 Most importantly, however, I learned about narrative design as a discipline. What I was most scared of was making the experience feel dumb, or plain boring. One of the things that helped with that was trying to expand on what was already working. Having entities connected to real-world locations is pretty cool, but why stop the connection between real and fictional there? The first entity you encounter, the Void; it's not just something you come accross in the game world, but it acts as a hub. And the only way you can visit it is by turning off your location tracking, which I absolutely love as a feature.
 
 Currently, I'm still learning a lot about narrative through writing for _Elyium_, but what I've learned has given me great insight on how to introduce the worldly context of a fictional universe into the interaction design and systems of a product.
+
+![](idle.png)
+![](narrative.png)
+![](menu.png)

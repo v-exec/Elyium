@@ -65,8 +65,8 @@ class Interface {
   boolean inIdle = false;
 
   //timing parameters
-  int minSpawnTime = 1;
-  int maxSpawnTime = 1;
+  int minSpawnTime = 5;
+  int maxSpawnTime = 5;
 
   Interface() {
     fill(255);
@@ -260,6 +260,14 @@ class Interface {
             }
           }
           col++;
+        }
+      }
+
+      //LOCATION DEBUGGING
+      if (menuToggle && !mapper.isTracking) {
+        if (mouseX <= 150 && mouseX >= 0 && mouseY <= height && mouseY >= height-150) {
+          mapper.latitude = random(-360, 360);
+          mapper.longitude = random (-360, 360);
         }
       }
     }

@@ -10,19 +10,22 @@ class Mapper implements LocationListener {
   float latitude  = 0;
   float longitude = 0;
 
-  //internal check variable
+  //flags
   boolean hasLocation = false;
+  boolean isTracking = false;
 
   //on new data reception, update gps data
   public void onLocationChanged(Location location) {
     //super rough estimate: 0.009 degrees = 1 km
     latitude  = (float)location.getLatitude();
     longitude = (float)location.getLongitude();
+    isTracking = true;
   }
 
   public void onProviderDisabled (String provider) {
     latitude = 0;
     longitude = 0;
+    isTracking = false;
   }
 
   //had to implement abstract methods from LocationListener
