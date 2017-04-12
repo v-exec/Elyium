@@ -2,7 +2,7 @@
 
 _Elyium_ is an experimental mobile alternate reality game, and a platform for narrative experiences and storytelling.
 
-To play, download the APK in this repository at `/public/Elyium.apk` and install it on your Android device. There also exists a PC version of _Elyium_, which is mostly for debugging and general convenience. If you're interested, though, it's found under `/pc`.
+To play, download the APK in this repository at `/public/Elyium.apk` and install it on your Android device. There also exists a desktop version of _Elyium_, which is mostly for debugging and general convenience. If you're interested, though, it's found under `/desktop`.
 
 [More information on this project can be found here.](http://v-os.ca/elyium)
 
@@ -14,7 +14,7 @@ To play, download the APK in this repository at `/public/Elyium.apk` and install
 
 `/public` contains all public data, including a guide to writing for _Elyium_, as well as the APK file for Android installations.
 
-`/pc` contains the code for the desktop version of _Elyium_, made for debugging and general convenience, rather than actual gameplay.
+`/desktop` contains the code for the desktop version of _Elyium_, made for debugging and general convenience, rather than actual gameplay.
 
 `/mobile` contains the code for the mobile version.
 
