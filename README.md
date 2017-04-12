@@ -2,9 +2,23 @@
 
 _Elyium_ is an experimental mobile alternate reality game, and a platform for narrative experiences and storytelling.
 
-To play, download the APK in this repository named `Elyium.apk` and install it on an Android device.
+To play, download the APK in this repository at `/public/Elyium.apk` and install it on your Android device. There also exists a PC version of _Elyium_, which is mostly for debugging and general convenience. If you're interested, though, it's found under `/pc`.
 
 [More information on this project can be found here.](http://v-os.ca/elyium)
+
+## Repository Contents
+
+`/data` contains the assets and content for both the mobile and desktop versions of _Elyium_.
+
+`/parsing` contains a small script that puts together individual entities into one single .json file.
+
+`/public` contains all public data, including a guide to writing for _Elyium_, as well as the APK file for Android installations.
+
+`/pc` contains the code for the desktop version of _Elyium_, made for debugging and general convenience, rather than actual gameplay.
+
+`/mobile` contains the code for the mobile version.
+
+In terms of differences between the mobile and desktop version, the mobile version supports location tracking, a fundemental feature for the storytelling format of _Elyium_, so this is the suggested gameplay platform, by far. Your location in the desktop version is determined through WASD input, much more boring. Also, due to screen sizing and pixel density, the two versions wear slightly different UIs, with the mobile version being once again the intended visual experience.
 
 ## What is Elyium?
 
@@ -24,7 +38,7 @@ When a player first encounters an entity, they are forced into a narrative seque
 
 ## How do I write stories on Elyium?
 
-All entities are written in a `.json` format. Due to the parsing system being quite 'hard', it is important that writers stick to the appropriate format to avoid errors. A guide to writing for _Elyium_ can be found in this repository, as a file named `Writing.md`. It explains how to format your stories, suggested tools that make writing more seamless, and instructions on how to build your own version of _Elyium_.
+All entities are written in a `.json` format. Due to the parsing system being quite 'hard', it is important that writers stick to the appropriate format to avoid errors. A guide to writing for _Elyium_ can be found in this repository, at `/public/Guide to Writing.md`. It explains how to format your stories, suggested tools that make writing more seamless, and instructions on how to build your own version of _Elyium_.
 
 ## Plan
 
@@ -34,14 +48,20 @@ A breakdown of the remaining tasks to be completed for the production of this pr
 
 - Fix weird startup crash (drawcolor on null object).
 
-- Keep program from crashing when user doesn't allow location tracking (should I?).
+- Fix issue where using another application with GPS tracking crashes program.
 
-- Add scrolling to menu interface.
+- Add scrolling/pages to menu interface.
 
 - Change menu entity interface element to show it can be interacted with.
 
-- Use timer to keep players from continuously getting narratives in the same entity by persistently interacting with it.
+- Add visual hint that previously encountered entity now has more encounters.
 
 - Add vibration feedback for UI presses and entity encounters.
 
+- Use timer to keep players from continuously getting narratives in the same entity by persistently interacting with it.
+
+- Host narratives on server to avoid application updating for content updates.
+
 - Verify phone compatabilities.
+
+- Create web interface for writing content.

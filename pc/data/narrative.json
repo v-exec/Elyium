@@ -1,0 +1,252 @@
+[
+  {
+    "cover": "memory box.png",
+    "name": "memory box",
+    "context": "After what feels like days of walking in the infinite planes, you notice a small black cube a few meters away, sitting on the dry soil.",
+    "conflicts": [
+      {
+        "def": "The cube has rune-like inscriptions indented into its surface. They pulsate with a barely visible golden light.",
+        "name": "K0",
+        "choices": [
+          {
+            "con": {
+              "def": "You get close to the cube. With each step, it shifts in size. It is now the size of a small house.",
+              "choices": [
+                {
+                  "con": {
+                    "def": "You turn around to walk away. Your field of view is expanded, and the periphery of your vision is engulfed in black.",
+                    "choices": [
+                      {
+                        "res": "You continue to walk until the cube takes up the entirety of your vision. All is black. You continue to walk. Nothing is black. There is no cube.",
+                        "def": "Walk into the cube.",
+                        "name": "R1"
+                      },
+                      {
+                        "res": "The swallowing darkness of your vision gradually dissipates until everything has returned back to normal. You look behind you, the small cube is still there. You keep walking.",
+                        "def": "Walk away from the cube.",
+                        "name": "R2"
+                      }
+                    ]
+                  },
+                  "def": "Walk away."
+                },
+                {
+                  "res": "You continue to walk until the cube takes up the entirety of your vision. All is black. You continue to walk. Nothing is black. There is no cube.",
+                  "def": "Walk even closer.",
+                  "name": "R1"
+                }
+              ]
+            },
+            "def": "Approach the cube."
+          },
+          {
+            "res": "You continue walking. You look back, the cube is no longer there. A light burning scent caresses your nose.",
+            "def": "Keep walking.",
+            "name": "R0"
+          }
+        ]
+      },
+      {
+        "def": "The mysterious cube once again sits still on the ground.",
+        "name": "K1",
+        "choices": [{
+          "con": {
+            "def": "The cube doesn't change size. It calmly remains in place.",
+            "choices": [
+              {
+                "res": "The moment your hands touch the cube, you feel a tremendous weight crush your entire body. The pain is immense. Your last memory is that of an old friend looking at you, smiling. You've acquired [a dark, four dimensional object].",
+                "def": "Pick up the cube.",
+                "name": "R0"
+              },
+              {
+                "res": "Three steps away from the cube, it combusts into a violent fire. It is incinerated within seconds. This time, the smell produced seems sweet, like a comforting food. You've acquired [a beautiful memory].",
+                "def": "Walk way from the cube.",
+                "name": "R1"
+              }
+            ]
+          },
+          "def": "Approach the cube."
+        }],
+        "conditions": [{
+          "res": "R0",
+          "con": "K0",
+          "entity": "memory box"
+        }]
+      }
+    ],
+    "animate": true
+  },
+  {
+    "cover": "monument.png",
+    "name": "monument",
+    "context": "Before you stands an odd megastructure approximately 40 meters in height, and 5x5 meters in width and length. It's shaped like a thin pyramid, with various degraded inscriptions along each of its corners, and appears to be a religious monument of some sort due to its complex ornamentation.",
+    "conflicts": [
+      {
+        "def": "You notice a small, rough potrusion on the side of the otherwise unnaturally smooth surface of the monument. Small specs of dust fall out of its cracks, hinting at its recent apparition.",
+        "name": "K0",
+        "choices": [
+          {
+            "con": {
+              "def": "The monument trembles in front of you. Pieces from its top plummet to the ground.",
+              "choices": [
+                {
+                  "res": "The structure collapses, you escape without getting hurt.",
+                  "def": "Run.",
+                  "name": "R0"
+                },
+                {
+                  "res": "A piece of the monument falls on you, your ankle is badly injured, but you are otherwise fine. The monument is destroyed.",
+                  "def": "Try to dodge the debris, stay near the monument.",
+                  "name": "R1"
+                }
+              ]
+            },
+            "def": "Push the extruded wall."
+          },
+          {
+            "con": {
+              "def": "The extrusion slides further out and revelas a semi-decomposed alien corpse. Its fingers are curled around some sort of scroll.",
+              "choices": [
+                {
+                  "res": "You grab the scroll from the creature's hands. It revelas a mythical telling of an epic battle that occured near this site. Most of the writing has unfortunately washed away, but you can make out a few key words that describe the incident as a major event that would bring peace for thousands of years.",
+                  "def": "Grab the scroll.",
+                  "name": "R2"
+                },
+                {
+                  "res": "The coffin fits back into the monument. A silent, low-pitched hum spreads through the air. Everything is calm.",
+                  "def": "Push the coffin back into the monument.",
+                  "name": "R3"
+                }
+              ]
+            },
+            "def": "Pull the extrusion."
+          }
+        ]
+      },
+      {
+        "def": "Lines driving up the monument's smooth walls light up a cyan blue and illuminate the dust floating in the atmosphere. The lights lead to an open door on the side of the megastructure.",
+        "name": "K1",
+        "choices": [
+          {
+            "res": "The door closes right as you attempt to enter it, clipping one of your fingers and breaking a part of it.",
+            "def": "Enter the passageway.",
+            "name": "R0"
+          },
+          {
+            "res": "The door slowly closes, the lights of the structure dim.",
+            "def": "Wait to see if anything comes out the door.",
+            "name": "R1"
+          }
+        ],
+        "conditions": [{
+          "res": "R1",
+          "con": "K0",
+          "entity": "monument"
+        }]
+      }
+    ],
+    "animate": false
+  },
+  {
+    "cover": "synthetic cavern.png",
+    "name": "synthetic cavern",
+    "context": "The clouds gather, night sets, all sky light burns out from the surface of the planes. A small, cyan light marks the entrance of a large cavern composed of cables and hardware. As you carefully enter the cave, the entrance closes behind you. Faint lights guide the path.",
+    "conflicts": [
+      {
+        "def": "As you walk along the reverberating corridors, clicks and chirps echo through the inner-walls of the cavern. In the overwhelming darkness, you notice one of the lights near you has begun to flicker.",
+        "name": "K0",
+        "choices": [
+          {
+            "con": {
+              "def": "You approach the light and notice a small chip, centimeters away from the glowing hot wire.",
+              "choices": [
+                {
+                  "con": {
+                    "def": "You slowly reach for the tiny bit of hardware. Out of anxiety, you flinch and burn yourself on the wire, but manage to grab on to the component. The cave is sharply illuminated in a dark red.",
+                    "choices": [
+                      {
+                        "res": "You make a run for it. The wires composing the cave walls organically begin to close in, slowly wrapping themselves around you and tethering themselves to your clothes. As the cavern closes, you manage make it out of the web of cables and exit the cavern. You seem to have lost the chip in the panic.",
+                        "def": "Try to run and find the cave exit as quickly as possible.",
+                        "name": "R2"
+                      },
+                      {
+                        "res": "The wires composing the cave walls organically begin to close. They wrap themselves around you, but don't seem to consider you a threat. As they investigate your body, the lights slowly shift to the soft blue they were previously. You begin walking again, and find the exit. You've acquired [a mysterious hardware chip].",
+                        "def": "Stay calm, stand still, be quiet.",
+                        "name": "R3"
+                      }
+                    ]
+                  },
+                  "def": "Grab the chip."
+                },
+                {
+                  "res": "You continue walking and eventually notice light down the corridor marking an exit to the cave. Upon exiting, you notice it is now day time. The cavern slowly sinks into the dust, a small neon text above the entrance illuminates. 'Thank you.'",
+                  "def": "Avoid the hot wire and the chip, and keep walking.",
+                  "name": "R1"
+                }
+              ]
+            },
+            "def": "Investigate the flickering light."
+          },
+          {
+            "res": "RESET-You keep walking, keeping your hand steadily planted on the metallic walls so as to keep yourself coordinated. Despite your efforts, you see another flickering light. Maybe you've been going in loops?",
+            "def": "Ignore the light and keep walking.",
+            "name": "R0"
+          }
+        ]
+      },
+      {
+        "def": "The cave doesn't lead to anywhere. The end of the single corridor is decorated with ornamental lights. There's a well-lit pedistal on top of which sits a strange, foreign device. It exudes an aura of extreme attraction and curiosity.",
+        "name": "K1",
+        "choices": [{
+          "res": "You pick up the object. Harsh corridor lights come on, revealing the almost organic texture of the metallic walls. A neon sign above the pedistal lights up. 'Good Choice'. The cavern rises above the ground, opening an exit to the planes. You've acquired [an alien key].",
+          "def": "Pick up the device.",
+          "name": "R0"
+        }],
+        "conditions": [{
+          "res": "R1",
+          "con": "K0",
+          "entity": "synthetic cavern"
+        }]
+      }
+    ],
+    "animate": true
+  },
+  {
+    "cover": "void.png",
+    "name": "void",
+    "context": "Nothing but fog surrounds you. Every step in one direction brings you back to your point of origin. You are in the Void.",
+    "conflicts": [
+      {
+        "def": "The ground is slightly wet from a light rain. Your vision is blurry. You can't remember much, other than a bright flash of light. Your body is draped in partially torn fabric, gently dragging across the grey soil. The device you're holding, it contains traces of the limbo world, Elyium. Its GPS functionality should allow you to access Elyium for yourself.",
+        "name": "K0",
+        "choices": [{
+          "res": "Welcome to a world between realities. Remember, if you wish to lose yourself and return to the void, simply turn off your location tracking.",
+          "def": "I've turned on my location tracking.",
+          "name": "R0"
+        }]
+      },
+      {
+        "def": "Welcome back to the Void.",
+        "name": "K1",
+        "choices": [
+          {
+            "res": "Walk, and see for yourself. This limbo world, Elyium, contains remnants from realities distant and near, both in time and space. As you roam the planes of solitude, you will encounter such entities. All choices you make will be recorded, and all other timelines will be crushed into inexistence.",
+            "def": "What is this world?",
+            "name": "R0"
+          },
+          {
+            "res": "The device you're holding is connected to Elyium, the limbo world. Here reside entities from various realities, ones you will inevitably come accross by simply roaming the planes outside of the void. When encountering these entities, you will be presented with various courses of action. Not all choices are important, but all lead down different paths.",
+            "def": "How does this world function?",
+            "name": "R1"
+          }
+        ],
+        "conditions": [{
+          "res": "R0",
+          "con": "K0",
+          "entity": "void"
+        }]
+      }
+    ],
+    "animate": true
+  }
+]
