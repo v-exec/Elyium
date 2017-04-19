@@ -1,0 +1,57 @@
+{
+	"name": "the plaque",
+	"cover": "plaque.png",
+	"animate": true,
+	"context": "Ashen sand sweeps across the ground in a gentle breeze. As you walk, the dunes become taller, they are small hills, now. At the crest of the tallest one is a small plaque, as if in a museum. Beyond it, only a few more sand hills.",
+	"conflicts": [{
+		"name": "K0",
+		"def": "The sand crushes like brittle charcoal under your feet. As you approach the plaque, you notice it stands at the threshold of a crater amidst the hills. The sand is almost black, and the lettering is hard to read.",
+		"choices": [{
+			"def": "Brush away the sand on the plaque.",
+			"con": {
+				"def": "It reads: “Saidnam The Great. May his works never be forgotten. EE 405”",
+				"choices": [{
+					"def": "The tablet is small. Pry it off the stand.",
+					"con": {
+						"def": "The stand collapses with a hard tug. The base plate, no longer hidden under the sands, reveals a small compartment under it.",
+						"choices": [{
+							"name": "R2",
+							"def": "Blindly feel for something inside.",
+							"res": "It's deeper than it looks. With no light and sand seeping in, there is no point to continue. The plaque was too well-secured to remove. Best keep walking."
+						}, {
+							"name": "R3",
+							"def": "Pull the plaque from the collapsed stand.",
+							"res": "The plaque gives into your demand. It's free of the stand. Sand has filled the compartment beneath where the plaque once stood. You've acquired [Saidnam's Inscription], and make your way beyond these ashen dunes."
+						}]
+					}
+				}, {
+					"name": "R1",
+					"def": "Praise be upon him.",
+					"res": "Seems no one is listening. You walk ahead, the plaque now quietly praising what isn't there once more. The sand dunes grow smaller as you pace forward. The ground is flat again, and a slight breeze moves the last of the ashen dust off your clothes. Perhaps it meant something long ago. But not anymore, best leave it undisturbed."
+				}]
+			}
+		}, {
+			"name": "R0",
+			"def": "Ignore the plaque and keep walking.",
+			"res": "You shuffle down the crater, and make your way beyond it. The sand dunes grow smaller as you walk ahead. The ground is flat again, and a slight breeze moves the last of the ashen dust off your clothes."
+		}]
+	}, {
+		"name": "K1",
+		"def": "As you crest the hill the plaque is perched on, you witness the monument behind it. The plaque is illegible, yet the significance of the monument needn't a plaque to communicate its importance. It's gigantic, rising out of a chasm below.",
+		"choices": [{
+			"name": "R0",
+			"def": "Make the jump to the monument.",
+			"res": "START-A bold leap. The surface of the monument crumbled with the slightest disturbance. You awake, dazed and hurt, and the threshold of the dunes."
+		},
+		{
+			"name": "R1",
+			"def": "Keep Your distance.",
+			"res": "As you pace around the chasm, the grey-black sand dislodges under your feet. One amount makes more noise than the others as it falls into the chasm. The monument, in all it's enormity, begins to crumble. You watch as the chasm fills with dust, and the monument slips into nothingness. Perhaps this was what the sands were."
+		}],
+		"conditions": [{
+			"entity": "the plaque",
+			"con": "K0",
+			"res": "R1"
+		}]
+	}]
+}

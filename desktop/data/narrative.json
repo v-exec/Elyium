@@ -148,6 +148,77 @@
     "animate": false
   },
   {
+    "cover": "plaque.png",
+    "name": "the plaque",
+    "context": "Ashen sand sweeps across the ground in a gentle breeze. As you walk, the dunes become taller, they are small hills, now. At the crest of the tallest one is a small plaque, as if in a museum. Beyond it, only a few more sand hills.",
+    "conflicts": [
+      {
+        "def": "The sand crushes like brittle charcoal under your feet. As you approach the plaque, you notice it stands at the threshold of a crater amidst the hills. The sand is almost black, and the lettering is hard to read.",
+        "name": "K0",
+        "choices": [
+          {
+            "con": {
+              "def": "It reads: \u201cSaidnam The Great. May his works never be forgotten. EE 405\u201d",
+              "choices": [
+                {
+                  "con": {
+                    "def": "The stand collapses with a hard tug. The base plate, no longer hidden under the sands, reveals a small compartment under it.",
+                    "choices": [
+                      {
+                        "res": "It's deeper than it looks. With no light and sand seeping in, there is no point to continue. The plaque was too well-secured to remove. Best keep walking.",
+                        "def": "Blindly feel for something inside.",
+                        "name": "R2"
+                      },
+                      {
+                        "res": "The plaque gives into your demand. It's free of the stand. Sand has filled the compartment beneath where the plaque once stood. You've acquired [Saidnam's Inscription], and make your way beyond these ashen dunes.",
+                        "def": "Pull the plaque from the collapsed stand.",
+                        "name": "R3"
+                      }
+                    ]
+                  },
+                  "def": "The tablet is small. Pry it off the stand."
+                },
+                {
+                  "res": "Seems no one is listening. You walk ahead, the plaque now quietly praising what isn't there once more. The sand dunes grow smaller as you pace forward. The ground is flat again, and a slight breeze moves the last of the ashen dust off your clothes. Perhaps it meant something long ago. But not anymore, best leave it undisturbed.",
+                  "def": "Praise be upon him.",
+                  "name": "R1"
+                }
+              ]
+            },
+            "def": "Brush away the sand on the plaque."
+          },
+          {
+            "res": "You shuffle down the crater, and make your way beyond it. The sand dunes grow smaller as you walk ahead. The ground is flat again, and a slight breeze moves the last of the ashen dust off your clothes.",
+            "def": "Ignore the plaque and keep walking.",
+            "name": "R0"
+          }
+        ]
+      },
+      {
+        "def": "As you crest the hill the plaque is perched on, you witness the monument behind it. The plaque is illegible, yet the significance of the monument needn't a plaque to communicate its importance. It's gigantic, rising out of a chasm below.",
+        "name": "K1",
+        "choices": [
+          {
+            "res": "START-A bold leap. The surface of the monument crumbled with the slightest disturbance. You awake, dazed and hurt, and the threshold of the dunes.",
+            "def": "Make the jump to the monument.",
+            "name": "R0"
+          },
+          {
+            "res": "As you pace around the chasm, the grey-black sand dislodges under your feet. One amount makes more noise than the others as it falls into the chasm. The monument, in all it's enormity, begins to crumble. You watch as the chasm fills with dust, and the monument slips into nothingness. Perhaps this was what the sands were.",
+            "def": "Keep Your distance.",
+            "name": "R1"
+          }
+        ],
+        "conditions": [{
+          "res": "R1",
+          "con": "K0",
+          "entity": "the plaque"
+        }]
+      }
+    ],
+    "animate": true
+  },
+  {
     "cover": "synthetic cavern.png",
     "name": "synthetic cavern",
     "context": "The clouds gather, night sets, all sky light burns out from the surface of the planes. A small, cyan light marks the entrance of a large cavern composed of cables and hardware. As you carefully enter the cave, the entrance closes behind you. Faint lights guide the path.",
