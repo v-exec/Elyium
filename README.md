@@ -42,7 +42,7 @@ When a player first encounters an entity, they are forced into a narrative seque
 
 All entities are written in a `.json` format. Due to the parsing system being quite 'hard', it is (unfortunately) important that writers stick to the appropriate format to avoid errors. A guide to writing for _Elyium_ can be found in this repository, at `/public/Guide to Writing.md`. It explains how to format your stories, suggested tools that make writing more seamless, and instructions on how to build your own version of _Elyium_.
 
-## Plan
+# Plan
 
 A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order.
 
