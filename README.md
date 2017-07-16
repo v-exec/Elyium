@@ -63,7 +63,3 @@ A breakdown of the remaining tasks to be completed for the production of this pr
 - Use timer to keep players from continuously getting narratives in the same entity by persistently interacting with it.
 
 - Verify phone compatabilities.
-
-- Host narratives on server to avoid application updating for content updates.
-
-- Create web interface for writing content.
