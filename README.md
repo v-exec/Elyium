@@ -6,6 +6,8 @@ To play, download the APK in this repository at `/public/Elyium.apk` and install
 
 [More information on this project can be found here.](http://v-os.ca/elyium)
 
+*NOTE*: _Elyium_ is playable. Remaining tasks to be completed are related to user experience / interaction design, some minor fixes, and testing. As of right now, the project is on hold indefinitely. It acts as a proof of concept, and would require a full rewrite for increased accessability and expandability.
+
 ## Repository Contents
 
 `/data` contains the assets and content for both the mobile and desktop versions of _Elyium_.
@@ -44,13 +46,13 @@ All entities are written in a `.json` format. Due to the parsing system being qu
 
 # Plan
 
-A breakdown of the remaining tasks to be completed for the production of this project, in (more or less) chronological order.
+A breakdown of the remaining tasks to be completed for the complete production of this project, in (more or less) chronological order.
 
-*NOTE*: _Elyium_ is now playable! Remaining tasks are related to user experience / interaction design, some minor fixes, and testing.
+*NOTE*: _Elyium_ is playable. Remaining tasks to be completed are related to user experience / interaction design, some minor fixes, and testing. As of right now, the project is on hold indefinitely. It acts as a proof of concept, and would require a full rewrite for increased accessability and expandability.
 
-- Fix weird startup crash (drawcolor on null object).
+- Rewrite for web.
 
-- Fix issue where using another application with GPS tracking crashes program.
+- Create writing application.
 
 - Add scrolling/pages to menu interface.
 
@@ -61,5 +63,3 @@ A breakdown of the remaining tasks to be completed for the production of this pr
 - Add vibration feedback for UI presses and entity encounters.
 
 - Use timer to keep players from continuously getting narratives in the same entity by persistently interacting with it.
-
-- Verify phone compatabilities.
